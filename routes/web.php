@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompaniesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth::routes();
+
 Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/companies', function () { return view('companies'); })->name('companies');
+
+Route::get('/companies', [CompaniesController::class, 'getAllCompanies'] )->name('companies');
 
 Route::get('/orders', function () { return view('orders'); })->name('orders');
 
 Route::get('/delivery-staff', function () { return view('delivery-staff'); })->name('deliveryStaff');
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
