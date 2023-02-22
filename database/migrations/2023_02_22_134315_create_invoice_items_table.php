@@ -16,6 +16,15 @@ return new class extends Migration
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedInteger("ivoiceId")
+            ->foreign()
+            ->refrences('id')
+            ->on("invoices")
+            ->onUpdate("cascade")
+            ->onDelete("cascade");
+            $table->string("name",100);
+            $table->tinyInteger("quantity");
+            $table->decimal("price",5,2);
         });
     }
 
