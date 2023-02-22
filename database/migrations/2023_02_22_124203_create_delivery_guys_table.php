@@ -13,18 +13,26 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('delivery_guys', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name', 100);
+            $table->string('nationalId', 100);
+            $table->string('phone', 100);
+            $table->string('motorCycleNumber', 100);
             $table->string('email')->unique();
             $table->string('userName', 100)->unique();
             $table->string('password');
-            $table->integer('numberOfDeliveryGuys');
-            $table->integer('numberOfRequests');
-            $table->string('city', 100);
-            $table->text('street');
             $table->timestamp('createdAt')->useCurrent();
+            $table->decimal('salary', 9, 2);
+            $table
+                ->unsignedInteger('companyId')
+                ->nullable()
+                ->foreign()
+                ->references('id')
+                ->on('companies')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -35,6 +43,6 @@ return new class extends Migration
      */
     // public function down()
     // {
-    //     Schema::dropIfExists('companies');
+    //     Schema::dropIfExists('delivery_guys');
     // }
 };
