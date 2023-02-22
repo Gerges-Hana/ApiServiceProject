@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class CompaniesController extends Controller
 {
+    /**
+     * get data
+     * @return view
+     */
     public function getAllCompanies()
     {
         $companies = [
