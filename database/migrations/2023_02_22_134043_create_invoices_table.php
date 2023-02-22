@@ -30,7 +30,7 @@ return new class extends Migration
             $table->date('orderDate');
             $table->string("clientName",100);
             $table->string("clienPhone");
-            $table->unsignedInteger("invoiceCode"); //kyro is true
+            // $table->unsignedInteger("invoiceCode"); //kyro is true
         });
     }
 
