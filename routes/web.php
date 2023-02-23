@@ -23,7 +23,11 @@ Route::get('/', function () {
 });
 
 
-Route::get('/companies', [CompaniesController::class, 'getAllCompanies'] )->name('companies');
+Route::get('/companies', [CompaniesController::class, 'index'])->name('companies');
+
+Route::get('/addCompany', [CompaniesController::class, 'create'])->name('addCompany');
+
+Route::post('/storeCompany', [CompaniesController::class, 'store'])->name('company.store');
 
 Route::get('/orders', function () { return view('orders'); })->name('orders');
 

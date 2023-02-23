@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CompaniesController extends Controller
 {
-    public function getAllCompanies()
+    public function index()
     {
         $companies = [
             [
@@ -21,4 +21,16 @@ class CompaniesController extends Controller
 
         return view('companies', ['companies' => $companies]);
     }
+
+    public function create()
+    {
+        return view('addCompany');
+    }
+
+    public function store(Request $req)
+    {
+        
+        return \redirect()->route('companies');
+    }
+
 }
