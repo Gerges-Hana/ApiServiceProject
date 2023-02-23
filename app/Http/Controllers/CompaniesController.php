@@ -29,7 +29,8 @@ class CompaniesController extends Controller
 
     public function store(Request $req)
     {
-        
+        $company = $req->all();
+        dd($company);
         return \redirect()->route('companies');
     }
 
