@@ -24,37 +24,40 @@ Companies
           <table class="table datatable dataTable-table table-hover table-striped">
             <thead>
               <tr>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">#</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Name</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
+                  <a href="#" class="dataTable-sorter">User Name</a>
+                </th>
+                <th scope="col" data-sortable="">
+                  <a href="#" class="dataTable-sorter">Email</a>
+                </th>
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Package Details</a>
                 </th>
-                <th scope="col" data-sortable="" >
-                  <a href="#" class="dataTable-sorter">Branches</a>
-                </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Start Date</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Delivery Staff</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Adress</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Orders</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Waiting</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Done</a>
                 </th>
-                <th scope="col" data-sortable="" >
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">On Delivering</a>
                 </th>
               </tr>
@@ -64,14 +67,15 @@ Companies
               <tr>
                 <th scope="row">{{ $comp['id'] }}</th>
                 <td>{{ $comp['name'] }}</td>
-                <td>Designer</td>
-                <td>28</td>
-                <td>2016-05-25</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
+                <td>{{ $comp['userName'] }}</td>
+                <td>{{ $comp['email'] }}</td>
+                <td>details</td>
+                <td>{{ $comp['created_at'] }}</td>
+                <td>20</td>
+                <td>{{ $comp['city'] }} {{ $comp['street']  }}</td>
+                <td>213</td>
+                <td>3</td>
+                <td>200</td>
                 <td>10</td>
               </tr>
               @endforeach
