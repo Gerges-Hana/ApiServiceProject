@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('deliverystaff', [ DeliveryStaffController::class, 'index' ] );
+Route::get( 'deliverystaff', [ DeliveryStaffController::class, 'index' ] );
