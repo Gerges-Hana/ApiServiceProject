@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompaniesController;
-
+use App\Http\Controllers\DeliveryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +31,6 @@ Route::post('/storeCompany', [CompaniesController::class, 'store'])->name('compa
 
 Route::get('/orders', function () { return view('orders'); })->name('orders');
 
-Route::get('/delivery-staff', function () { return view('delivery-staff'); })->name('deliveryStaff');
+Route::get('/delivery-staff', [DeliveryController::class, 'index'] )->name('d.deliveryStaff');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
