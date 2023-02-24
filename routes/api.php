@@ -23,6 +23,6 @@ Route::get('/deliverystaff', [ DeliveryStaffController::class, 'index' ]);
 
 Route::post('deliverystaff/add', [ DeliveryStaffController::class, 'store' ]);
 
-Route::get( 'test', function(){
+Route::get('test', function(){
     return 'test';
 });

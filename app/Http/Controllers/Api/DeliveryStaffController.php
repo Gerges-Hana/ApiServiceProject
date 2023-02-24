@@ -18,10 +18,19 @@ class DeliveryStaffController extends Controller
 
     public function store(Request $req)
     {
+        $req->validate([
+            'name' => 'required',
+            'user-name' => 'required|unique:delivery_guys,userName',
+            'national-id' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
+            'email' => 'required|unique:delivery_guys',
+        ]);
+
         $guy = $req->all();
 
         DeliveryGuy::create([
-            'companyId' => 1,
+            'companyId' => $guy['company-id'],
             'name' => $guy['name'],
             'userName' => $guy['user-name'],
             'nationalId' => $guy['national-id'],
@@ -31,7 +40,7 @@ class DeliveryStaffController extends Controller
             'motorCycleNumber' => $guy['motor-num'],
             'email' => $guy['email'],
         ]);
-        
-        return \response()->json(['message' => 'Delivery guy has been added successfully'], 200);
+
+        return response()->json(['message' => 'Delivery guy has been added successfully'], 200);
     }
 }

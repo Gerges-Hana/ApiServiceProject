@@ -75,20 +75,20 @@ Delivery
               @foreach ($delvieryGuys as $guy)
               <tr>
                 <th scope="row">{{ $guy['id'] }}</th>
-                <td>{{ $guy['name'] }}</td>
-                <td>{{ $guy['userName'] }}</td>
-                <td>{{ $guy['phone'] }}</td>
-                <td>{{ $guy['companyId'] }}</td>
-                <td>{{ $guy['created_at'] }}</td>
+                <td>{{ $guy->name }}</td>
+                <td>{{ $guy->userName }}</td>
+                <td>{{ $guy->phone }}</td>
+                <td>{{ $guy->company->name }}</td>
+                <td>{{ $guy->created_at }}</td>
                 <td>active</td>
-                <td>{{ $guy['city'] }} {{ $guy['street'] }}</td>
-                <td>{{ $guy['email'] }}</td>
+                <td>{{ $guy->city }} {{ $guy->street }}</td>
+                <td>{{ $guy->email }}</td>
                 <td>230</td>
                 <td>10</td>
                 <td>450</td>
-                <td>{{ $guy['salary'] }}</td>
+                <td>{{ $guy->salary }}</td>
                 <td>32</td>
-                <td>{{ $guy['nationalId'] }}</td>
+                <td>{{ $guy->nationalId }}</td>
               </tr>
               @endforeach
             </tbody>

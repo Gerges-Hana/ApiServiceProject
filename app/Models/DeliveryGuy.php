@@ -21,4 +21,9 @@ class DeliveryGuy extends Model
         'motorCycleNumber',
         'email'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(related: Company::class, foreignKey: 'companyId');
+    }
 }
