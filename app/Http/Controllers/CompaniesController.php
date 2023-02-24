@@ -41,7 +41,7 @@ class CompaniesController extends Controller
             'street' => $company['street'],
         ]);
         
-        return \redirect()->route('companies');
+        return redirect()->route('companies');
     }
 
 }

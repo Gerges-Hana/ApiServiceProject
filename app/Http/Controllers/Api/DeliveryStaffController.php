@@ -15,4 +15,23 @@ class DeliveryStaffController extends Controller
     {
         return DeliveryGuy::all();
     }
+
+    public function store(Request $req)
+    {
+        $guy = $req->all();
+
+        DeliveryGuy::create([
+            'companyId' => 1,
+            'name' => $guy['name'],
+            'userName' => $guy['user-name'],
+            'nationalId' => $guy['national-id'],
+            'phone' => $guy['phone'],
+            'salary' => $guy['salary'],
+            'password' => $guy['password'],
+            'motorCycleNumber' => $guy['motor-num'],
+            'email' => $guy['email'],
+        ]);
+        
+        return \response()->json(['message' => 'Delivery guy has been added successfully'], 200);
+    }
 }

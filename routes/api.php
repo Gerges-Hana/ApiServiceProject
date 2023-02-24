@@ -19,8 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/deliverystaff', [ DeliveryStaffController::class, 'index' ]);
 
-Route::get( '/deliverystaff', [ DeliveryStaffController::class, 'index' ] );
+Route::post('deliverystaff/add', [ DeliveryStaffController::class, 'store' ]);
 
 Route::get( 'test', function(){
     return 'test';

@@ -17,5 +17,8 @@ class DeliveryGuy extends Model
         'nationalId',
         'phone',
         'salary',
+        'password',
+        'motorCycleNumber',
+        'email'
     ];
 }
