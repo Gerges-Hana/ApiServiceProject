@@ -52,7 +52,7 @@ Delivery
                   <a href="#" class="dataTable-sorter">Mail</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="">Orders</a>
+                  <a href="#" class="dataTable-sorter">Orders</a>
                 </th>
                 <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Delivering time avrg</a>
