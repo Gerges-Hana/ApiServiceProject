@@ -20,6 +20,7 @@
         <!-- Companies info table -->
         <div class=" table-responsive table-responsive-lg text-nowrap">
           <table class="table datatable dataTable-table table-hover table-striped">
+
             <thead>
               <tr>
                 <th scope="col" data-sortable="" >
@@ -57,8 +58,11 @@
                 </th>
               </tr>
             </thead>
+
+
             <tbody class="table-striped">
-              <tr>
+
+               <tr>
                 <th scope="row">1</th>
                 <td>Brandon Jacob</td>
                 <td>Designer</td>
@@ -71,59 +75,11 @@
                 <td>230</td>
                 <td>10</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Bridie Kessler</td>
-                <td>Developer</td>
-                <td>35</td>
-                <td>2014-12-05</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Ashleigh Langosh</td>
-                <td>Finance</td>
-                <td>45</td>
-                <td>2011-08-12</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Angus Grady</td>
-                <td>HR</td>
-                <td>34</td>
-                <td>2012-06-11</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Raheem Lehner</td>
-                <td>Dynamic Division Officer</td>
-                <td>47</td>
-                <td>2011-04-19</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-              </tr>
+
+
+
             </tbody>
+
           </table>
         </div><!-- End companies info table -->
 
