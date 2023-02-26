@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group( ['middleware' => ['auth:sanctum']], function() {
-    Route::get('/deliverystaff', [ DeliveryStaffController::class, 'index' ]);
+    Route::get('/deliverystaff/{companyId}', [ DeliveryStaffController::class, 'index' ]);
     Route::post('deliverystaff/add', [ DeliveryStaffController::class, 'store' ]);
     
 });
@@ -29,6 +29,7 @@ Route::group( ['middleware' => ['auth:sanctum']], function() {
 
 
 // public routes
+Route::post('deliverystaff/login', [ DeliveryStaffController::class, 'login' ]);
 Route::get('test', function(){
     return 'test';
 });

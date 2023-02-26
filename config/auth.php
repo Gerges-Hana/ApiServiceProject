@@ -42,7 +42,7 @@ return [
         ],
         'api' => [
             'driver' => 'sanctum',
-            'provider' => 'companies',
+            'provider' => 'companies, delivery_guys',
             'hash' => false,
         ]
     ],
@@ -72,6 +72,10 @@ return [
         'companies' => [
             'driver' => 'eloquent',
             'model' => App\Models\Company::class,
+        ],
+        'delivery_guys' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\DeliveryGuy::class,
         ]
 
         // 'users' => [
