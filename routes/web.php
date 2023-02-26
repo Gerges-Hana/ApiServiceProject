@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\OrdersController;
 
 
 /*
@@ -25,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/companies', [CompaniesController::class, 'getAllCompanies'] )->name('companies');
 
-Route::get('/orders', function () { return view('orders'); })->name('orders');
+Route::get('/orders', [OrdersController::class, 'getAllOrders'] )->name('orders');
 
 Route::get('/delivery-staff', function () { return view('delivery-staff'); })->name('deliveryStaff');
 
