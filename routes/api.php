@@ -15,14 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// protected routes
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/deliverystaff', [ DeliveryStaffController::class, 'index' ]);
+Route::group( ['middleware' => ['auth:sanctum']], function() {
+    Route::get('/deliverystaff', [ DeliveryStaffController::class, 'index' ]);
+    Route::post('deliverystaff/add', [ DeliveryStaffController::class, 'store' ]);
+    
+});
 
-Route::post('deliverystaff/add', [ DeliveryStaffController::class, 'store' ]);
 
+
+// public routes
 Route::get('test', function(){
     return 'test';
 });
