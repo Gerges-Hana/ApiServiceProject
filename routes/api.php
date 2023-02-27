@@ -29,6 +29,8 @@ Route::get('test',function(){
 
 
 // Route for return all orders
-Route::get('orders',[OrdersController::class,'index']);
+Route::get('orders',[OrdersController::class,'show']);
+Route::get('orders/{companyId}',[OrdersController::class,'index']);
+Route::post('orders/add',[OrdersController::class,'storeInvoice']);
 
 
