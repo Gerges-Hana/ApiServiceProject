@@ -71,4 +71,9 @@ class DeliveryStaffController extends Controller
             'token' => $token
         ], 201);
     }
+
+    public function logout()
+    {
+        
+    }
 }
