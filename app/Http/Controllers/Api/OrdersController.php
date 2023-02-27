@@ -24,10 +24,50 @@ class OrdersController extends Controller
 
 
     // function store  a invoices in api services from restaurant
-    public function storeInvoice(){
-        return 'test';
+    public function storeInvoice(Request $request)
+    {
+        $invoice = $request->all();
+        // $id = $invoice['id'];
+        $campanyId = $invoice['campanyId'];
+        $deliveryGuyId = $invoice['deliveryGuyId'];
+        $isPaid = $invoice['isPaid'];
+        $delivaryFees = $invoice['delivaryFees'];
+        $status = $invoice['status'];
+        $city = $invoice['city'];
+        $street = $invoice['street'];
+        $buildingNumber = $invoice['buildingNumber'];
+        $floorNumber = $invoice['floorNumber'];
+        $apartmentNumber = $invoice['apartmentNumber'];
+        $totalPrice = $invoice['totalPrice'];
+        $orderDate = $invoice['orderDate'];
+        $clientName = $invoice['clientName'];
+        $clienPhone = $invoice['clienPhone'];
+        $invoiceCode = $invoice['invoiceCode'].md5($campanyId);
+
+        $order = Invoice::create([
+
+            // 'id'=>$id  ,
+            'campanyId'=>$campanyId  ,
+            'deliveryGuyId'=>$deliveryGuyId  ,
+            'isPaid'=>$isPaid  ,
+            'delivaryFees'=>$delivaryFees  ,
+            'status'=>$status  ,
+            'city'=>$city  ,
+            'street'=>$street  ,
+            'buildingNumber'=>$buildingNumber  ,
+            'floorNumber'=>$floorNumber  ,
+            'apartmentNumber'=>$apartmentNumber  ,
+            'totalPrice'=>$totalPrice  ,
+            'orderDate'=>$orderDate  ,
+            'clientName'=>$clientName  ,
+            'clienPhone'=>$clienPhone  ,
+            'invoiceCode'=>$invoiceCode  ,
+        ]);
+
+        return response()->json([
+            'message' => 'Invoice has been added successfully',
+            'data' =>$order
+        ], 200);
+
     }
-
-
-
 }

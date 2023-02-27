@@ -10,7 +10,7 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
+        // 'id',
         'campanyId',
         'deliveryGuyId',
         'isPaid',
@@ -26,6 +26,7 @@ class Invoice extends Model
         'clientName',
         'clienPhone',
         'invoiceCode',
+
 
     ];
 }
