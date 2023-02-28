@@ -93,6 +93,12 @@
         <i class="bi bi-person"></i>
         <span>Profile</span>
       </a>
+    </li>
+
+    <li class="nav-item btn btn-primary btn-block">
+      <a class="nav-link collapsed" href="{{ route('addCompany') }}">
+        <span>Add Company</span>
+      </a>
     </li><!-- End Profile Page Nav -->
 
   </ul>
