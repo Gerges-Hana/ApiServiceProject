@@ -17,14 +17,15 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedInteger("ivoiceId")
-            ->foreign()
-            ->refrences('id')
-            ->on("invoices")
-            ->onUpdate("cascade")
-            ->onDelete("cascade");
-            $table->string("name",100);
-            $table->tinyInteger("quantity");
-            $table->decimal("price",5,2);
+                ->foreign()
+                ->refrences('id')
+                ->on("invoices")
+                ->onUpdate("cascade")
+                ->onDelete("cascade");
+            $table->string("name", 100);
+            $table->tinyInteger("quantity")->default(1);
+            $table->decimal("itemPrice", 5, 2);
+            $table->decimal("totalItemsPrice", 5, 2)->nullable();
         });
     }
 
@@ -33,8 +34,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('invoice_items');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('invoice_items');
+    // }
 };

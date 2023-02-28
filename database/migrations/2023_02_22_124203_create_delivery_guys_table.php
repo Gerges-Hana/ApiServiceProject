@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('userName', 100)->unique();
             $table->string('password');
-            $table->timestamp('createdAt')->useCurrent();
             $table->decimal('salary', 9, 2);
             $table
                 ->unsignedInteger('companyId')

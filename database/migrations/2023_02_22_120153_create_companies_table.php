@@ -20,11 +20,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('userName', 100)->unique();
             $table->string('password');
-            $table->integer('numberOfDeliveryGuys');
-            $table->integer('numberOfRequests');
+            $table->integer('numberOfDeliveryGuys')->default(0);
+            $table->integer('numberOfRequests')->default(0);
             $table->string('city', 100);
             $table->text('street');
-            $table->timestamp('createdAt')->useCurrent();
         });
     }
 
