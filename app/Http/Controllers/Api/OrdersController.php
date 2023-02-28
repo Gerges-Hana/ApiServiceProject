@@ -27,9 +27,7 @@ class OrdersController extends Controller
     public function storeInvoice(Request $request)
     {
         $invoice = $request->all();
-        // $id = $invoice['id'];
         $campanyId = $invoice['campanyId'];
-        $deliveryGuyId = $invoice['deliveryGuyId'];
         $isPaid = $invoice['isPaid'];
         $delivaryFees = $invoice['delivaryFees'];
         $status = $invoice['status'];
@@ -42,32 +40,28 @@ class OrdersController extends Controller
         $orderDate = $invoice['orderDate'];
         $clientName = $invoice['clientName'];
         $clienPhone = $invoice['clienPhone'];
-        $invoiceCode = $invoice['invoiceCode'].md5($campanyId);
+        $invoiceCode = $invoice['invoiceCode'] . md5($campanyId);
 
         $order = Invoice::create([
-
-            // 'id'=>$id  ,
-            'campanyId'=>$campanyId  ,
-            'deliveryGuyId'=>$deliveryGuyId  ,
-            'isPaid'=>$isPaid  ,
-            'delivaryFees'=>$delivaryFees  ,
-            'status'=>$status  ,
-            'city'=>$city  ,
-            'street'=>$street  ,
-            'buildingNumber'=>$buildingNumber  ,
-            'floorNumber'=>$floorNumber  ,
-            'apartmentNumber'=>$apartmentNumber  ,
-            'totalPrice'=>$totalPrice  ,
-            'orderDate'=>$orderDate  ,
-            'clientName'=>$clientName  ,
-            'clienPhone'=>$clienPhone  ,
-            'invoiceCode'=>$invoiceCode  ,
+            'campanyId' => $campanyId,
+            'isPaid' => $isPaid,
+            'delivaryFees' => $delivaryFees,
+            'status' => $status,
+            'city' => $city,
+            'street' => $street,
+            'buildingNumber' => $buildingNumber,
+            'floorNumber' => $floorNumber,
+            'apartmentNumber' => $apartmentNumber,
+            'totalPrice' => $totalPrice,
+            'orderDate' => $orderDate,
+            'clientName' => $clientName,
+            'clienPhone' => $clienPhone,
+            'invoiceCode' => $invoiceCode,
         ]);
 
         return response()->json([
             'message' => 'Invoice has been added successfully',
-            'data' =>$order
+            'data' => $order
         ], 200);
-
     }
 }
