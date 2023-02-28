@@ -30,10 +30,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // ORDERS ROUTES //
     // Route for return all orders
     Route::get('orders', [OrdersController::class, 'show']);
-    Route::get('orders/{companyId}', [OrdersController::class, 'index']);
-    Route::post('orders/add', [OrdersController::class, 'storeInvoice']);
-});
 
+    // http://127.0.0.1:8000/api/posts/{--id--}
+    Route::get('orders/{companyId}', [OrdersController::class, 'index']);
+
+    // http://127.0.0.1:8000/api/orders/add
+    Route::post('orders/add', [OrdersController::class, 'storeInvoice']);
+
+    // routing to send wating order to delivery guy
+    // http://127.0.0.1:8000/api/invoiceApi
+    Route::get('invoiceApi',[OrdersController::class, 'postInvoiceToDelivery']);
+});
 
 
 // public routes

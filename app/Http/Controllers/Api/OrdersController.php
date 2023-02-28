@@ -64,4 +64,12 @@ class OrdersController extends Controller
             'data' => $order
         ], 200);
     }
+
+// function to send orders api to delivery gay
+    protected function postInvoiceToDelivery(){
+
+        return Invoice::where('status', 'waiting')->get();
+    }
+
+
 }
