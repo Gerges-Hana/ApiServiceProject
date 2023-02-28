@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\OrdersController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,7 @@ Route::get('/addCompany', [CompaniesController::class, 'create'])->name('addComp
 
 Route::post('/storeCompany', [CompaniesController::class, 'store'])->name('company.store');
 
-Route::get('/orders', function () { return view('orders'); })->name('orders');
+Route::get('/orders', [OrdersController::class, 'getAllOrders'] )->name('orders');
 
 Route::get('/delivery-staff', [DeliveryController::class, 'index'] )->name('d.deliveryStaff');
 

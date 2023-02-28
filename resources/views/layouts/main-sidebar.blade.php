@@ -44,7 +44,8 @@
       </a>
       <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/orders">
+          {{-- <a href="/orders"> --}}
+          <a href="{{route('orders')}}">
             <i class="bi bi-circle"></i><span>On hold</span>
           </a>
         </li>
