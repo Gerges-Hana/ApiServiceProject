@@ -18,7 +18,6 @@ class OrdersController extends Controller
     // function return company orders
     public function index($companyId)
     {
-        // notice company is writing rong in DB >> campanyId
         return Invoice::where('campanyId', $companyId)->get();
     }
 
@@ -26,37 +25,38 @@ class OrdersController extends Controller
     // function store  a invoices in api services from restaurant
     public function storeInvoice(Request $request)
     {
-        $invoice = $request->all();
-        $campanyId = $invoice['campanyId'];
-        $isPaid = $invoice['isPaid'];
-        $delivaryFees = $invoice['delivaryFees'];
-        $status = $invoice['status'];
-        $city = $invoice['city'];
-        $street = $invoice['street'];
-        $buildingNumber = $invoice['buildingNumber'];
-        $floorNumber = $invoice['floorNumber'];
-        $apartmentNumber = $invoice['apartmentNumber'];
-        $totalPrice = $invoice['totalPrice'];
-        $orderDate = $invoice['orderDate'];
-        $clientName = $invoice['clientName'];
-        $clienPhone = $invoice['clienPhone'];
-        $invoiceCode = $invoice['invoiceCode'] . md5($campanyId);
+        $invoice = $request->validate([
+            'companyId' => 'required',
+            'isPaid' => 'required',
+            'delivaryFees' => 'required',
+            'city' => 'required',
+            'street' => 'required',
+            'buildingNumber' => 'required',
+            'floorNumber' => 'required',
+            'apartmentNumber' => 'required',
+            'totalPrice' => 'required',
+            'orderDate' => 'required',
+            'clientName' => 'required',
+            'clientPhone' => 'required',
+            'invoiceCode' => 'required',
+        ]);
+
+        // $invoiceCode = $invoice['invoiceCode'] . md5($campanyId);
 
         $order = Invoice::create([
-            'campanyId' => $campanyId,
-            'isPaid' => $isPaid,
-            'delivaryFees' => $delivaryFees,
-            'status' => $status,
-            'city' => $city,
-            'street' => $street,
-            'buildingNumber' => $buildingNumber,
-            'floorNumber' => $floorNumber,
-            'apartmentNumber' => $apartmentNumber,
-            'totalPrice' => $totalPrice,
-            'orderDate' => $orderDate,
-            'clientName' => $clientName,
-            'clienPhone' => $clienPhone,
-            'invoiceCode' => $invoiceCode,
+            'companyId' => $invoice['companyId'],
+            'isPaid' => $invoice['isPaid'],
+            'delivaryFees' => $invoice['delivaryFees'],
+            'city' => $invoice['city'],
+            'street' => $invoice['street'],
+            'buildingNumber' => $invoice['buildingNumber'],
+            'floorNumber' => $invoice['floorNumber'],
+            'apartmentNumber' => $invoice['apartmentNumber'],
+            'totalPrice' => $invoice['totalPrice'],
+            'orderDate' => $invoice['orderDate'],
+            'clientName' => $invoice['clientName'],
+            'clientPhone' => $invoice['clientPhone'],
+            'invoiceCode' => $invoice['invoiceCode'],
         ]);
 
         return response()->json([
