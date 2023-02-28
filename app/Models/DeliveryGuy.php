@@ -8,16 +8,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class Company extends Authenticatable
+class DeliveryGuy extends Authenticatable
 {
     use HasFactory, HasApiTokens;
 
     protected $fillable = [
+        'id',
+        'companyId',
         'name',
         'userName',
-        'email',
+        'nationalId',
+        'phone',
+        'salary',
         'password',
-        'city',
-        'street',
+        'motorCycleNumber',
+        'email'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(related: Company::class, foreignKey: 'companyId');
+    }
 }

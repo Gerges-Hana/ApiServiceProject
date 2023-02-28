@@ -72,7 +72,7 @@ Companies
                 <td>details</td>
                 <td>{{ $comp['created_at'] }}</td>
                 <td>20</td>
-                <td>{{ $comp['city'] }} {{ $comp['street']  }}</td>
+                <td>{{ $comp['city'] }} {{ $comp['street'] }}</td>
                 <td>213</td>
                 <td>3</td>
                 <td>200</td>

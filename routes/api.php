@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DeliveryStaffController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// protected routes
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group( ['middleware' => ['auth:sanctum']], function() {
+    Route::get('/deliverystaff/{companyId}', [ DeliveryStaffController::class, 'index' ]);
+    Route::post('deliverystaff/add', [ DeliveryStaffController::class, 'store' ]);
+    
+});
+
+
+
+// public routes
+Route::post('deliverystaff/login', [ DeliveryStaffController::class, 'login' ]);
+Route::get('test', function(){
+    return 'test';
 });

@@ -31,6 +31,9 @@ Delivery
                   <a href="#" class="dataTable-sorter">Name</a>
                 </th>
                 <th scope="col" data-sortable="">
+                  <a href="#" class="dataTable-sorter">User Name</a>
+                </th>
+                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Phones</a>
                 </th>
                 <th scope="col" data-sortable="">
@@ -49,7 +52,7 @@ Delivery
                   <a href="#" class="dataTable-sorter">Mail</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="">Orders</a>
+                  <a href="#" class="dataTable-sorter">Orders</a>
                 </th>
                 <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Delivering time avrg</a>
@@ -61,9 +64,6 @@ Delivery
                   <a href="#" class="dataTable-sorter">Salary</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Gender</a>
-                </th>
-                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Age</a>
                 </th>
                 <th scope="col" data-sortable="">
@@ -72,91 +72,25 @@ Delivery
               </tr>
             </thead>
             <tbody>
+              @foreach ($delvieryGuys as $guy)
               <tr>
-                <th scope="row">1</th>
-                <td>Brandon Jacob</td>
-                <td>Designer</td>
-                <td>28</td>
-                <td>2016-05-25</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
+                <th scope="row">{{ $guy['id'] }}</th>
+                <td>{{ $guy->name }}</td>
+                <td>{{ $guy->userName }}</td>
+                <td>{{ $guy->phone }}</td>
+                <td>{{ $guy->company->name }}</td>
+                <td>{{ $guy->created_at }}</td>
+                <td>active</td>
+                <td>{{ $guy->city }} {{ $guy->street }}</td>
+                <td>{{ $guy->email }}</td>
                 <td>230</td>
                 <td>10</td>
                 <td>450</td>
-                <td>male</td>
-                <td>30</td>
-                <td>564654</td>
+                <td>{{ $guy->salary }}</td>
+                <td>32</td>
+                <td>{{ $guy->nationalId }}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Bridie Kessler</td>
-                <td>Developer</td>
-                <td>35</td>
-                <td>2014-12-05</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-                <td>450</td>
-                <td>male</td>
-                <td>30</td>
-                <td>564654</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Ashleigh Langosh</td>
-                <td>Finance</td>
-                <td>45</td>
-                <td>2011-08-12</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-                <td>450</td>
-                <td>male</td>
-                <td>30</td>
-                <td>564654</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Angus Grady</td>
-                <td>HR</td>
-                <td>34</td>
-                <td>2012-06-11</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-                <td>450</td>
-                <td>male</td>
-                <td>30</td>
-                <td>564654</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Raheem Lehner</td>
-                <td>Dynamic Division Officer</td>
-                <td>47</td>
-                <td>2011-04-19</td>
-                <td>50</td>
-                <td>aswan main street</td>
-                <td>250</td>
-                <td>10</td>
-                <td>230</td>
-                <td>10</td>
-                <td>450</td>
-                <td>male</td>
-                <td>30</td>
-                <td>564654</td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
         </div><!-- End companies info table -->
