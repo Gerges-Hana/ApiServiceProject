@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Route for return all orders
     Route::get('orders', [OrdersController::class, 'show']);
 
-    // http://127.0.0.1:8000/api/posts/{--id--}
+// http://127.0.0.1:8000/api/orders/{--id--}
     Route::get('orders/{companyId}', [OrdersController::class, 'index']);
 
     // http://127.0.0.1:8000/api/orders/add

@@ -5,15 +5,30 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class OrdersController extends Controller
 {
     //
     // function return all arders in api services
-    public function show()
+    public function show(Request $req)
     {
-        return Invoice::all();
+        $hashedToken = $req->bearerToken();
+
+        // $token = PersonalAccessToken::where('token', $hashedToken)->get();
+        $token = PersonalAccessToken::findToken($hashedToken);
+        $companyId = $token->tokenable_id;
+        // return $companyId;
+        return Invoice::where('companyId', $companyId)->get();
+
     }
+
+    // public function show(Request $req)
+    // {
+    //     return response()->json([
+    //         'data' => $req
+    //     ]);
+    // }
 
     // function return company orders
     public function index($companyId)
@@ -65,11 +80,10 @@ class OrdersController extends Controller
         ], 200);
     }
 
-// function to send orders api to delivery gay
-    protected function postInvoiceToDelivery(){
+    // function to send orders api to delivery gay
+    protected function postInvoiceToDelivery()
+    {
 
         return Invoice::where('status', 'waiting')->get();
     }
-
-
 }
