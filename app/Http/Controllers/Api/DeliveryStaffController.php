@@ -25,7 +25,7 @@ class DeliveryStaffController extends Controller
             'national-id' => 'required',
             'phone' => 'required',
             'password' => 'required',
-            'email' => 'required|unique:delivery_guys',
+            // 'email' => 'required|unique:delivery_guys,email',
         ]);
 
         $guy = $req->all();
@@ -74,6 +74,6 @@ class DeliveryStaffController extends Controller
 
     public function logout()
     {
-        
+
     }
 }

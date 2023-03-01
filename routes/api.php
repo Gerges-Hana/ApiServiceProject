@@ -28,8 +28,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('deliverystaff/add', [DeliveryStaffController::class, 'store']);
 
     // ORDERS ROUTES //
+    // Route for return all orders of all company
+    Route::get('allOrders', [OrdersController::class, 'allOrders']);
+
     // Route for return all orders
-    Route::get('orders', [OrdersController::class, 'show']);
+    Route::get('orders', [OrdersController::class, 'companyOrders']);
+
+
+
+    // ===========delivery token ==============
+    // Route for ...
+    Route::get('deliveryOrdere', [OrdersController::class, 'deliveryOrders']);
+    // =========================
+
+
+
+
 
 // http://127.0.0.1:8000/api/orders/{--id--}
     Route::get('orders/{companyId}', [OrdersController::class, 'index']);

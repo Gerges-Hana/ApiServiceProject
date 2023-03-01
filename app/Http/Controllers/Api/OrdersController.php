@@ -11,29 +11,52 @@ class OrdersController extends Controller
 {
     //
     // function return all arders in api services
-    public function show(Request $req)
+    public function companyOrders(Request $req)
     {
+        // return token code
         $hashedToken = $req->bearerToken();
-
-        // $token = PersonalAccessToken::where('token', $hashedToken)->get();
+        // return company of this token
         $token = PersonalAccessToken::findToken($hashedToken);
+        // return company id of this token
         $companyId = $token->tokenable_id;
-        // return $companyId;
         return Invoice::where('companyId', $companyId)->get();
-
     }
 
-    // public function show(Request $req)
-    // {
-    //     return response()->json([
-    //         'data' => $req
-    //     ]);
-    // }
+
+    // ======================deligery guy token=========================
+    public function deliveryOrders()
+    {
+//         select `users`.*, `posts`.`descrption` from `users`
+// inner join `posts` on `posts`.`user_id` = `users`.`id`
+// inner join `comments` on `comments`.`post_id` = `posts`.`id`
+
+// $users = User::join('posts', 'posts.user_id', '=', 'users.id')
+//               ->join('comments', 'comments.post_id', '=', 'posts.id')
+//               ->get(['users.*', 'posts.descrption']);
+
+
+// $users = User::join('posts', 'users.id', '=', 'posts.user_id')
+//                ->get(['users.*', 'posts.descrption']);
+
+        $order = Invoice::join('delivery_guys', 'companyId', '=', 'companyId')
+        ->join('companies', 'id', '=', 'companyId')
+        ->get();
+        return $order;
+
+
+
+    }
+    // ===============================================
+
+    public function allOrders()
+    {
+       return Invoice::all();
+    }
 
     // function return company orders
     public function index($companyId)
     {
-        return Invoice::where('campanyId', $companyId)->get();
+        return Invoice::where('companyId', $companyId)->get();
     }
 
 
