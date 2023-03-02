@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
+use Exception;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -63,5 +64,17 @@ class OrdersController extends Controller
             'message' => 'Invoice has been added successfully',
             'data' => $order
         ], 200);
+    }
+
+    public function updateStatus($invoiceId,$status)
+    {
+        try{
+            // update invoice status 
+            Invoice::where('id', $invoiceId)->update(['status' => $status]);
+            return response()->json(['message' => 'status updated'], 201);
+        }
+        catch (Exception $e) {
+            return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 501);
+        }
     }
 }

@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // public routes
 Route::post('deliverystaff/login', [DeliveryStaffController::class, 'login']);
 
+Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
+
 // test postman
 Route::get('test', function () {
     return "test";
