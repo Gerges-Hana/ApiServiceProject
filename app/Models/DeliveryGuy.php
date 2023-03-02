@@ -22,11 +22,18 @@ class DeliveryGuy extends Authenticatable
         'salary',
         'password',
         'motorCycleNumber',
-        'email'
+        'email',
+        'status'
+
     ];
 
     public function company()
     {
         return $this->belongsTo(related: Company::class, foreignKey: 'companyId');
+    }
+    public function invoises()
+    {
+        dd($this->all());
+        return $this->hasMany(related: Invoice::class,foreignKey:"deliveryGuyId");
     }
 }

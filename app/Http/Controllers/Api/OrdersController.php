@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryGuy;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -23,34 +25,41 @@ class OrdersController extends Controller
     }
 
 
-    // ======================deligery guy token=========================
-    public function deliveryOrders()
+    // =============================== getWaitingOrders===============
+    public function getWaitingOrders(Request $req)
     {
-//         select `users`.*, `posts`.`descrption` from `users`
-// inner join `posts` on `posts`.`user_id` = `users`.`id`
-// inner join `comments` on `comments`.`post_id` = `posts`.`id`
+        // return token code
+        $hashedToken = $req->bearerToken();
+        // return company of this token
+        $token = PersonalAccessToken::findToken($hashedToken);
+        // return company id of this token
+        $deliveryId = $token->tokenable_id;
+        //  return $deliveryId;
+        $companyId = DeliveryGuy::select('companyId')
+            ->where('id', $deliveryId)
+            ->first()['companyId'];
+        //  return $companyId;
+        $allOrders = Invoice::where('companyId', $companyId)
+            ->where('status', 'waiting')->get();
 
-// $users = User::join('posts', 'posts.user_id', '=', 'users.id')
-//               ->join('comments', 'comments.post_id', '=', 'posts.id')
-//               ->get(['users.*', 'posts.descrption']);
-
-
-// $users = User::join('posts', 'users.id', '=', 'posts.user_id')
-//                ->get(['users.*', 'posts.descrption']);
-
-        $order = Invoice::join('delivery_guys', 'companyId', '=', 'companyId')
-        ->join('companies', 'id', '=', 'companyId')
-        ->get();
-        return $order;
-
-
-
+        $delivery = DeliveryGuy::find($deliveryId);
+        if ($delivery->status == "busy") {
+            return response()->json([
+                'message' => 'you are busy',
+            ], 406);
+        }
+        return response()->json([
+            'message' => 'your orders',
+            'data' => $allOrders
+        ], 200);
     }
-    // ===============================================
+    // =============================== end function getWaitingOrders===============
+
+
 
     public function allOrders()
     {
-       return Invoice::all();
+        return Invoice::all();
     }
 
     // function return company orders
@@ -95,6 +104,7 @@ class OrdersController extends Controller
             'clientName' => $invoice['clientName'],
             'clientPhone' => $invoice['clientPhone'],
             'invoiceCode' => $invoice['invoiceCode'],
+            // 'deliveryGuyId' => $invoice['deliveryGuyId'],
         ]);
 
         return response()->json([

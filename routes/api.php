@@ -38,8 +38,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // ===========delivery token ==============
     // Route for ...
-    Route::get('deliveryOrdere', [OrdersController::class, 'deliveryOrders']);
+    Route::get('deliveryOrders/{id}', [OrdersController::class, 'deliveryOrders']);
     // =========================
+
+    // ++++++++++++ route for return all orders from resturant to his delivery ++++++++++++
+    Route::get('orders/waiting', [OrdersController::class, 'getWaitingOrders']);
+    // ++++++++++++++++++++++++
 
 
 
@@ -64,4 +68,6 @@ Route::post('deliverystaff/login', [DeliveryStaffController::class, 'login']);
 Route::get('test', function () {
     return "test";
 });
+
+Route::get('updateDeliveryStatus/{orderStatus}/{id}', [DeliveryStaffController::class, 'updateDeliveryStatus']);
 // ==========
