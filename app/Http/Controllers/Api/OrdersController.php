@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\Facades\DB;
+// use App\Http\Controllers\Api\DeliveryStaffController;
 
 class OrdersController extends Controller
 {
@@ -114,11 +115,13 @@ class OrdersController extends Controller
         ], 200);
     }
 
-    public function updateStatus($invoiceId,$status)
+    public function updateStatus($invoiceId,$status, Request $req)
     {
         try{
             // update invoice status
             Invoice::where('id', $invoiceId)->update(['status' => $status]);
+            // update delivery guy status depending on invoice status
+            DeliveryStaffController::updateDeliveryStatus($status, DeliveryStaffController::getDeliveryGuyId($req));
             return response()->json(['message' => 'status updated'], 201);
         }
         catch (Exception $e) {

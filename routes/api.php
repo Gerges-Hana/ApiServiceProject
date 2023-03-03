@@ -65,7 +65,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // ================= company ================
 Route::post('company/logout', [CompanyController::class, 'logout']);
 
-
+// ===============shady====================
+// function update status of invoices
+Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
+// ===============shady====================
 
 
 });
@@ -74,7 +77,7 @@ Route::post('company/logout', [CompanyController::class, 'logout']);
 // public routes
 Route::post('deliverystaff/login', [DeliveryStaffController::class, 'login']);
 
-Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
+
 
 // test postman
 Route::get('test', function () {

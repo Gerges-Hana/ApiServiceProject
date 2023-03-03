@@ -7,6 +7,7 @@ use App\Models\DeliveryGuy;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\PersonalAccessToken;
 
 /**
  * Delivery staff api controller
@@ -78,7 +79,7 @@ class DeliveryStaffController extends Controller
     }
 
 // function update delivery statuse to by free or busy
-    public function updateDeliveryStatus(string $orderStatus, $id)
+    public static function updateDeliveryStatus(string $orderStatus, $id)
     {
         if ($orderStatus == 'onDelivering') {
             DeliveryGuy::where('id', $id)
@@ -89,5 +90,15 @@ class DeliveryStaffController extends Controller
         }
 
         return DeliveryGuy::find($id);
+    }
+
+    public static function getDeliveryGuyId(Request $req)
+    {
+        // return token code
+        $hashedToken = $req->bearerToken();
+        // return company of this token
+        $token = PersonalAccessToken::findToken($hashedToken);
+        // return company id of this token
+        return $token->tokenable_id;
     }
 }
