@@ -19,7 +19,7 @@ class CompaniesController extends Controller
 
     public function register(Request $req)
     {
-        
+
     }
 
     public function index()
@@ -44,7 +44,7 @@ class CompaniesController extends Controller
         //     'city' => 'required|string',
         //     'street' => 'required|string',
         // ]);
-        
+
         $company = $req->all();
 
         // dd($company);
@@ -60,7 +60,7 @@ class CompaniesController extends Controller
 
         $token = $comp->createToken('compTokenapp')->plainTextToken;
 
-        dd($token);
+        // dd($token);
 
         return redirect()->route('companies');
     }

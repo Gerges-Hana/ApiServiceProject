@@ -5,6 +5,7 @@ use GuzzleHttp\Psr7\Uri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\OrdersController;
+use App\Http\Controllers\Api\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,46 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('deliverystaff/add', [DeliveryStaffController::class, 'store']);
 
     // ORDERS ROUTES //
-    // Route for return all orders
-    Route::get('orders', [OrdersController::class, 'show']);
-    Route::get('orders/{companyId}', [OrdersController::class, 'index']);
-    Route::post('orders/add', [OrdersController::class, 'storeInvoice']);
-});
+    // Route for return all orders of all company
+    Route::get('allOrders', [OrdersController::class, 'allOrders']);
 
+    // Route for return all orders
+    Route::get('orders', [OrdersController::class, 'companyOrders']);
+
+
+
+    // ===========delivery token ==============
+    // Route for ...
+    Route::get('deliveryOrders/{id}', [OrdersController::class, 'deliveryOrders']);
+    // =========================
+
+    // ++++++++++++ route for return all orders from resturant to his delivery ++++++++++++
+    Route::get('orders/waiting', [OrdersController::class, 'getWaitingOrders']);
+    // ++++++++++++++++++++++++
+
+
+
+
+
+// http://127.0.0.1:8000/api/orders/{--id--}
+    Route::get('orders/{companyId}', [OrdersController::class, 'index']);
+
+    // http://127.0.0.1:8000/api/orders/add
+    Route::post('orders/add', [OrdersController::class, 'storeInvoice']);
+
+    // routing to send wating order to delivery guy
+    // http://127.0.0.1:8000/api/invoiceApi
+    Route::get('invoiceApi',[OrdersController::class, 'postInvoiceToDelivery']);
+
+
+
+// ================= company ================
+Route::post('company/logout', [CompanyController::class, 'logout']);
+
+
+
+
+});
 
 
 // public routes
@@ -45,4 +80,15 @@ Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updat
 Route::get('test', function () {
     return "test";
 });
+
+Route::get('updateDeliveryStatus/{orderStatus}/{id}', [DeliveryStaffController::class, 'updateDeliveryStatus']);
 // ==========
+
+
+
+// ++++++++++++++++++++++company ++++++++++++++++++++++++++++++++
+Route::post('company/add', [CompanyController::class, 'store']);
+Route::post('company/login', [CompanyController::class, 'login']);
+
+
+// ++++++++++++++++++++++end company++++++++++++++++++++++++++++++++

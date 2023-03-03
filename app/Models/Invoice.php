@@ -11,6 +11,7 @@ class Invoice extends Model
 
     protected $fillable = [
         'companyId',
+        // 'deliveryGuyId',
         'isPaid',
         'delivaryFees',
         'city',

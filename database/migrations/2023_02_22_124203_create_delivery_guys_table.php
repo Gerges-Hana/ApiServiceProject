@@ -24,14 +24,15 @@ return new class extends Migration
             $table->string('userName', 100)->unique();
             $table->string('password');
             $table->decimal('salary', 9, 2);
-            $table
-                ->unsignedInteger('companyId')
-                ->nullable()
-                ->foreign()
-                ->references('id')
-                ->on('companies')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            // $table
+            //     ->unsignedInteger('companyId')
+            //     ->nullable()
+            //     ->references('id')
+            //     ->on('companies')
+            //     ->onUpdate('cascade')
+            //     ->onDelete('cascade');
+            $table->foreignId('companyId')->nullable()->constrained('companies')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

@@ -60,6 +60,7 @@ Companies
                 <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">On Delivering</a>
                 </th>
+               
               </tr>
             </thead>
             <tbody>
@@ -77,6 +78,7 @@ Companies
                 <td>3</td>
                 <td>200</td>
                 <td>10</td>
+
               </tr>
               @endforeach
             </tbody>

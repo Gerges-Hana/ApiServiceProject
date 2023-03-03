@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryGuy;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,7 +26,7 @@ class DeliveryStaffController extends Controller
             'national-id' => 'required',
             'phone' => 'required',
             'password' => 'required',
-            'email' => 'required|unique:delivery_guys',
+            'email' => 'required|unique:delivery_guys,email',
         ]);
 
         $guy = $req->all();
@@ -74,6 +75,19 @@ class DeliveryStaffController extends Controller
 
     public function logout()
     {
-        
+    }
+
+// function update delivery statuse to by free or busy
+    public function updateDeliveryStatus(string $orderStatus, $id)
+    {
+        if ($orderStatus == 'onDelivering') {
+            DeliveryGuy::where('id', $id)
+                ->update(['status' => 'busy']);
+        } elseif ($orderStatus == 'delivered' || $orderStatus == 'cancelled') {
+            DeliveryGuy::where('id', $id)
+                ->update(['status' => 'free']);
+        }
+
+        return DeliveryGuy::find($id);
     }
 }

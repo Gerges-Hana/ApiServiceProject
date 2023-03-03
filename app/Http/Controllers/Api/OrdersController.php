@@ -3,15 +3,62 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryGuy;
 use App\Models\Invoice;
 use Exception;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
     //
     // function return all arders in api services
-    public function show()
+    public function companyOrders(Request $req)
+    {
+        // return token code
+        $hashedToken = $req->bearerToken();
+        // return company of this token
+        $token = PersonalAccessToken::findToken($hashedToken);
+        // return company id of this token
+        $companyId = $token->tokenable_id;
+        return Invoice::where('companyId', $companyId)->get();
+    }
+
+
+    // =============================== getWaitingOrders===============
+    public function getWaitingOrders(Request $req)
+    {
+        // return token code
+        $hashedToken = $req->bearerToken();
+        // return company of this token
+        $token = PersonalAccessToken::findToken($hashedToken);
+        // return company id of this token
+        $deliveryId = $token->tokenable_id;
+        //  return $deliveryId;
+        $companyId = DeliveryGuy::select('companyId')
+            ->where('id', $deliveryId)
+            ->first()['companyId'];
+        //  return $companyId;
+        $allOrders = Invoice::where('companyId', $companyId)
+            ->where('status', 'waiting')->get();
+
+        $delivery = DeliveryGuy::find($deliveryId);
+        if ($delivery->status == "busy") {
+            return response()->json([
+                'message' => 'you are busy',
+            ], 406);
+        }
+        return response()->json([
+            'message' => 'your orders',
+            'data' => $allOrders
+        ], 200);
+    }
+    // =============================== end function getWaitingOrders===============
+
+
+
+    public function allOrders()
     {
         return Invoice::all();
     }
@@ -19,7 +66,7 @@ class OrdersController extends Controller
     // function return company orders
     public function index($companyId)
     {
-        return Invoice::where('campanyId', $companyId)->get();
+        return Invoice::where('companyId', $companyId)->get();
     }
 
 
@@ -58,6 +105,7 @@ class OrdersController extends Controller
             'clientName' => $invoice['clientName'],
             'clientPhone' => $invoice['clientPhone'],
             'invoiceCode' => $invoice['invoiceCode'],
+            // 'deliveryGuyId' => $invoice['deliveryGuyId'],
         ]);
 
         return response()->json([
@@ -69,12 +117,18 @@ class OrdersController extends Controller
     public function updateStatus($invoiceId,$status)
     {
         try{
-            // update invoice status 
+            // update invoice status
             Invoice::where('id', $invoiceId)->update(['status' => $status]);
             return response()->json(['message' => 'status updated'], 201);
         }
         catch (Exception $e) {
             return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 501);
         }
+    }
+    // function to send orders api to delivery gay
+    public function postInvoiceToDelivery()
+    {
+
+        return Invoice::where('status', 'waiting')->get();
     }
 }
