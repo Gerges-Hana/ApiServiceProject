@@ -5,6 +5,7 @@ use GuzzleHttp\Psr7\Uri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\OrdersController;
+use App\Http\Controllers\Api\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // routing to send wating order to delivery guy
     // http://127.0.0.1:8000/api/invoiceApi
     Route::get('invoiceApi',[OrdersController::class, 'postInvoiceToDelivery']);
+
+
+
+// ================= company ================
+Route::post('company/logout', [CompanyController::class, 'logout']);
+
+
+
+
 });
 
 
@@ -71,3 +81,12 @@ Route::get('test', function () {
 
 Route::get('updateDeliveryStatus/{orderStatus}/{id}', [DeliveryStaffController::class, 'updateDeliveryStatus']);
 // ==========
+
+
+
+// ++++++++++++++++++++++company ++++++++++++++++++++++++++++++++
+Route::post('company/add', [CompanyController::class, 'store']);
+Route::post('company/login', [CompanyController::class, 'login']);
+
+
+// ++++++++++++++++++++++end company++++++++++++++++++++++++++++++++

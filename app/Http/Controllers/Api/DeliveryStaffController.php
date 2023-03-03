@@ -77,7 +77,7 @@ class DeliveryStaffController extends Controller
     {
     }
 
-
+// function update delivery statuse to by free or busy
     public function updateDeliveryStatus(string $orderStatus, $id)
     {
         if ($orderStatus == 'onDelivering') {
