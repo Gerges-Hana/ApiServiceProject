@@ -32,7 +32,16 @@ Route::get('/addCompany', [CompaniesController::class, 'create'])->name('addComp
 Route::post('/storeCompany', [CompaniesController::class, 'store'])->name('company.store');
 
 Route::get('/orders', [OrdersController::class, 'getAllOrders'] )->name('orders');
+Route::get('/orders-waiting', [OrdersController::class, 'waitingOrders'] )->name('orders-waiting');
+Route::get('/orders-delivered', [OrdersController::class, 'deliveredOrders'] )->name('orders-delivered');
+Route::get('/orders-canceled', [OrdersController::class, 'canceledOrders'] )->name('orders-canceled');
+Route::get('/orders-returned', [OrdersController::class, 'returnedOrders'] )->name('orders-returned');
+Route::get('/orders-onDelivering', [OrdersController::class, 'onDeliveringOrders'] )->name('orders-onDelivering');
 
+
+
+
+//Delivery routes 
 Route::get('/delivery-staff', [DeliveryController::class, 'index'] )->name('d.deliveryStaff');
 Route::get('/delivery-free', [DeliveryController::class, 'deliveryGuysFree'] )/*->name('d.deliveryStaff')*/;
 Route::get('/delivery-busy', [DeliveryController::class, 'deliveryGuysBusy'] )/*->name('d.deliveryStaff')*/;

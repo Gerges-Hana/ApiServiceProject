@@ -128,10 +128,11 @@ class OrdersController extends Controller
             return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 501);
         }
     }
-    // function to send orders api to delivery gay
+    // function to send orders api to delivery guy
     public function postInvoiceToDelivery()
     {
 
         return Invoice::where('status', 'waiting')->get();
     }
+   
 }

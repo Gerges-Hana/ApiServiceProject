@@ -45,19 +45,30 @@
       <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
           {{-- <a href="/orders"> --}}
-          <a href="{{route('orders')}}">
+          <a href="{{route('orders-waiting')}}">
             <i class="bi bi-circle"></i><span>On hold</span>
           </a>
         </li>
         <li>
-          <a href="/orders">
+          <a href="/orders-onDelivering">
             <i class="bi bi-circle"></i><span>On delivering</span>
           </a>
         </li>
+       
         <li>
-          <a href="/orders">
+          <a href="/orders-delivered">
             <i class="bi bi-circle"></i><span>Delivered</span>
           </a>
+        </li>
+        <li>
+          <a href="/orders-canceled">
+            <i class="bi bi-circle"></i><span>Canceled</span>
+          </a>
+          <li>
+          <a href="/orders-returned">
+            <i class="bi bi-circle"></i><span>returned</span>
+          </a>
+        </li>
         </li>
       </ul>
     </li><!-- End Orders Nav -->
