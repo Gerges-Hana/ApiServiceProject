@@ -64,5 +64,17 @@ class CompaniesController extends Controller
 
         return redirect()->route('companies');
     }
+    public function search(Request $request){
+        $search=$request['query']??"";
+        if($search!=""){
+            $company=Company::where('name','LIKE',"%$search%")->orwhere('id','LIKE',"%$search%")->get();
+
+        }
+        else{
+            $company=Company::all();
+        }
+        return view('companies', ['companies' => $company]);
+    }
+   
 
 }

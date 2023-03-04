@@ -23,13 +23,17 @@ use App\Http\Controllers\OrdersController;
 Route::get('/', function () {
     return view('dashboard');
 });
-
+// company routes
 
 Route::get('/companies', [CompaniesController::class, 'index'])->name('companies');
 
 Route::get('/addCompany', [CompaniesController::class, 'create'])->name('addCompany');
 
 Route::post('/storeCompany', [CompaniesController::class, 'store'])->name('company.store');
+
+Route::get('/company-search', [CompaniesController::class,'search'])->name('companies-search');
+
+//order routes
 
 Route::get('/orders', [OrdersController::class, 'getAllOrders'] )->name('orders');
 Route::get('/orders-waiting', [OrdersController::class, 'waitingOrders'] )->name('orders-waiting');
