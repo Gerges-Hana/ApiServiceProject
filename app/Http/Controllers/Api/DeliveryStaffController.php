@@ -107,4 +107,36 @@ class DeliveryStaffController extends Controller
         // return company id of this token
         return $token->tokenable_id;
     }
+
+    public function update(Request $request,$id)
+    {
+
+        // $request->validate([
+        //     'name' => 'required',
+        //     'userName' => 'required|unique:companies,userName',
+        //     'city' => 'required',
+        //     'password' => 'required',
+        //     'email' => 'required|unique:companies,email',
+        // ]);
+
+
+        $deliveryGuy=DeliveryGuy::find($id);
+        $deliveryGuy->update($request->all());
+        // return $deliveryGuy;
+        return response()->json([
+            'message' => 'deliveryGuy has been update successfully',
+            'data' => $deliveryGuy
+        ], 200);
+
+
+    }
+
+
+    public function delete($id)
+    {
+        // return 'delete function ';
+        return DeliveryGuy::destroy($id);
+    }
+
+
 }

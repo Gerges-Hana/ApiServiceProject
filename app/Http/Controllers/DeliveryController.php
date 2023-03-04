@@ -16,16 +16,24 @@ class DeliveryController extends Controller
 
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
     }
+
+
     public function deliveryGuysBusy()
     {
         $deliveryGuys = DeliveryGuy::where('status','busy')->get();
 
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
     }
+
+
     public function deliveryGuysFree()
     {
         $deliveryGuys = DeliveryGuy::where('status','free')->get();
 
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
     }
+
+
+
+
 }

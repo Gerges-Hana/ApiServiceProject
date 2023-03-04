@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // ORDERS ROUTES //
     // Route for return all orders of all company
-    Route::get('allOrders', [OrdersController::class, 'allOrders']);
+    Route::get('allorders', [OrdersController::class, 'allOrders']);
 
     // Route for return all orders
     Route::get('orders', [OrdersController::class, 'companyOrders']);
@@ -58,15 +58,20 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // routing to send wating order to delivery guy
     // http://127.0.0.1:8000/api/invoiceApi
-    Route::get('invoiceApi',[OrdersController::class, 'postInvoiceToDelivery']);
+    Route::get('allorders/waiting',[OrdersController::class, 'postInvoiceToDelivery']);
 
 
 
-// ================= company logout ================
+// ================= company ================
 Route::post('company/logout', [CompanyController::class, 'logout']);
+Route::put('company/update/{id}', [CompanyController::class, 'update']);
+Route::delete('/company/{id}',[CompanyController::class,'delete']);
 
-// ================= delivery logout ================
+// ================= delivery  ================
 Route::post('delivery/logout', [DeliveryStaffController::class, 'logout']);
+Route::put('delivery/update/{id}', [DeliveryStaffController::class, 'update']);
+Route::delete('/delivery/{id}',[DeliveryStaffController::class,'delete']);
+
 
 // ===============shady====================
 // function update status of delivery by the statuse of  invoices

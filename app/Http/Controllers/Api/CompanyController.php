@@ -78,8 +78,44 @@ class CompanyController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json([
             'message' => 'Successfully logged out',
-            'df' => $request->bearerToken(),
+            'token' => $request->bearerToken(),
          ], 201);
+    }
+
+    public function update(Request $request,$id)
+    {
+
+        // $request->validate([
+        //     'name' => 'required',
+        //     'userName' => 'required|unique:companies,userName',
+        //     'city' => 'required',
+        //     'password' => 'required',
+        //     'email' => 'required|unique:companies,email',
+        // ]);
+        $company=Company::find($id);
+        $company->update($request->all());
+        // return $company;
+        return response()->json([
+            'message' => 'Company has been update successfully',
+            'data' => $company
+        ], 200);
+
+        // ===========eswee============
+        // $company->name=$request->name;
+        // $company->city=$request->city;
+        // $company->street=$request->street;
+        // $company->userName=$request->userName;
+        // $company->password=$request->password;
+        // $company->email=$request->email;
+        // $company->save();
+        // ===========eswee============
+    }
+
+
+    public function delete($id)
+    {
+        // return 'delete function ';
+        return Company::destroy($id);
     }
 
 }

@@ -118,10 +118,12 @@ class OrdersController extends Controller
     public function updateStatus($invoiceId,$status, Request $req)
     {
         try{
+            // get delivery guy id
+            $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
             // update invoice status
-            Invoice::where('id', $invoiceId)->update(['status' => $status]);
+            Invoice::where('id', $invoiceId)->update(['status' => $status, 'deliveryGuyId' => $deliveryId]);
             // update delivery guy status depending on invoice status
-            DeliveryStaffController::updateDeliveryStatus($status, DeliveryStaffController::getDeliveryGuyId($req));
+            DeliveryStaffController::updateDeliveryStatus($status, $deliveryId);
             return response()->json(['message' => 'status updated'], 201);
         }
         catch (Exception $e) {
