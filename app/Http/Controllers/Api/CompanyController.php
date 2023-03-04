@@ -28,7 +28,7 @@ class CompanyController extends Controller
 
         Company::create([
             'name' => $company['name'],
-            'userName ' => $company['userName'],
+            'userName' => $company['userName'],
             'city' => $company['city'],
             'password' => bcrypt($company['password']),
             'street' => $company['street'],
@@ -40,6 +40,8 @@ class CompanyController extends Controller
             'data' => $company
         ], 200);
     }
+
+
 
     public function login(Request $req)
     {
@@ -69,24 +71,15 @@ class CompanyController extends Controller
         ], 201);
     }
 
+
+
     public function logout(Request $request)
     {
-
-        $request->user()->currentAccessToken()->revoke();
-        // $request->company()->token()->revoke();
-        // $xx=$request->auth()->user()->token()->revoke();
-        // auth()->user
-
-        // $user = $request->company();
-
-        // $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
-// return $user;
-
+        $request->user()->currentAccessToken()->delete();
         return response()->json([
             'message' => 'Successfully logged out',
             'df' => $request->bearerToken(),
          ], 201);
-        // return $xx;
-
     }
+
 }

@@ -15,4 +15,6 @@ class OrdersController extends Controller
         //  dd($orders);
         return view('orders',['orders' => $orders] );
     }
+
+    
 }

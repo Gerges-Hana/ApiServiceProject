@@ -74,8 +74,14 @@ class DeliveryStaffController extends Controller
         ], 201);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message' => 'Successfully logged out',
+            'df' => $request->bearerToken(),
+         ], 201);
+
     }
 
 // function update delivery statuse to by free or busy

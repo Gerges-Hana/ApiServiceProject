@@ -62,11 +62,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 
-// ================= company ================
+// ================= company logout ================
 Route::post('company/logout', [CompanyController::class, 'logout']);
 
+// ================= delivery logout ================
+Route::post('delivery/logout', [DeliveryStaffController::class, 'logout']);
+
 // ===============shady====================
-// function update status of invoices
+// function update status of delivery by the statuse of  invoices
 Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
 // ===============shady====================
 

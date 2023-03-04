@@ -69,17 +69,17 @@
       <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
           <a href="/delivery-staff">
-            <i class="bi bi-circle"></i><span>In service</span>
+            <i class="bi bi-circle"></i><span>All Delivery</span>
           </a>
         </li>
         <li>
-          <a href="/delivery-staff">
+          <a href="/delivery-free">
             <i class="bi bi-circle"></i><span>Available</span>
           </a>
         </li>
         <li>
-          <a href="/delivery-staff">
-            <i class="bi bi-circle"></i><span>Fired</span>
+          <a href="/delivery-busy">
+            <i class="bi bi-circle"></i><span>Not Available</span>
           </a>
         </li>
       </ul>

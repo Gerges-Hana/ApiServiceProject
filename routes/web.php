@@ -34,5 +34,7 @@ Route::post('/storeCompany', [CompaniesController::class, 'store'])->name('compa
 Route::get('/orders', [OrdersController::class, 'getAllOrders'] )->name('orders');
 
 Route::get('/delivery-staff', [DeliveryController::class, 'index'] )->name('d.deliveryStaff');
+Route::get('/delivery-free', [DeliveryController::class, 'deliveryGuysFree'] )/*->name('d.deliveryStaff')*/;
+Route::get('/delivery-busy', [DeliveryController::class, 'deliveryGuysBusy'] )/*->name('d.deliveryStaff')*/;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
