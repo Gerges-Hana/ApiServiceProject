@@ -20,4 +20,8 @@ class Company extends Authenticatable
         'city',
         'street',
     ];
+    public function invoices(){
+    
+        return $this->hasMany(Invoice :: class,foreignKey: 'companyId');
+    }
 }

@@ -8,22 +8,9 @@
   </a>
   <i class="bi bi-list toggle-sidebar-btn"></i>
 </div><!-- End Logo -->
-@yield('search company')
 
 
-<div class="search-bar">
-  <form class="search-form d-flex align-items-center" method="get" action="{{route('companies-search')}}">
-    <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
-    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-  </form>
-</div>
-
-<!-- <div class="search-bar">
-  <form class="search-form d-flex align-items-center" method="get" action="{{route('companies-search')}}">
-    <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
-    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-  </form>
-</div> -->
+@yield('searchField')
 
 
 <!-- End Search Bar -->

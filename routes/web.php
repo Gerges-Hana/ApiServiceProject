@@ -41,6 +41,7 @@ Route::get('/orders-delivered', [OrdersController::class, 'deliveredOrders'] )->
 Route::get('/orders-canceled', [OrdersController::class, 'canceledOrders'] )->name('orders-canceled');
 Route::get('/orders-returned', [OrdersController::class, 'returnedOrders'] )->name('orders-returned');
 Route::get('/orders-onDelivering', [OrdersController::class, 'onDeliveringOrders'] )->name('orders-onDelivering');
+Route::get('/orders-search', [OrdersController::class, 'orderSearch'] )->name('orderSearch');
 
 
 
@@ -49,5 +50,5 @@ Route::get('/orders-onDelivering', [OrdersController::class, 'onDeliveringOrders
 Route::get('/delivery-staff', [DeliveryController::class, 'index'] )->name('d.deliveryStaff');
 Route::get('/delivery-free', [DeliveryController::class, 'deliveryGuysFree'] )/*->name('d.deliveryStaff')*/;
 Route::get('/delivery-busy', [DeliveryController::class, 'deliveryGuysBusy'] )/*->name('d.deliveryStaff')*/;
-
+Route::get('/delivery-search', [DeliveryController::class, 'deliverySearchByCompanyName'] )->name('delivery-search');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

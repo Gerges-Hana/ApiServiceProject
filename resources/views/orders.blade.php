@@ -6,7 +6,14 @@ Orders
 
 @section('css')
 @endsection
-
+@section('searchField')
+<div class="search-bar">
+  <form class="search-form d-flex align-items-center" method="get" action="{{ route('orderSearch') }}">
+    <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
+    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+  </form>
+</div>
+@endsection
 @section('content')
 <section class="section dashboard">
     <div class="row">
@@ -88,7 +95,7 @@ Orders
                             @foreach ($orders as $order)
                             <tr>
                                 <th scope="row">{{ $order->id }}</th>
-                                <td>{{ $order->companyId }}</td>
+                                <td>{{ $order->company->name }}</td>
                                 <td>{{ $order->deliveryGuyId }}</td>
                                 <td>{{ $order->isPaid }}</td>
                                 <td>{{ $order->delivaryFees }}</td>

@@ -28,4 +28,22 @@ class DeliveryController extends Controller
 
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
     }
+    public function deliverySearch(Request $request){
+
+      
+        $search=$request['query']??"";
+      
+        if($search!=""){
+            $deliveryGuys=DeliveryGuy::where('name','LIKE',"%$search%")->orwhere('id','LIKE',"%$search%")->get();
+
+        }
+        else{
+            $deliveryGuys=DeliveryGuy::all();
+        }
+        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
+    }
+    public function deliverySearchByCompanyName(Request $request){
+$delivery= new DeliveryGuy();
+return view('delivery-staff', ['delvieryGuys' => SearchController::searchWithCompanyName($request,$delivery)]);
+    }
 }
