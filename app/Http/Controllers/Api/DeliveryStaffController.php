@@ -84,6 +84,9 @@ class DeliveryStaffController extends Controller
 
     }
 
+
+
+
 // function update delivery statuse to by free or busy
     public static function updateDeliveryStatus(string $orderStatus, $id)
     {
@@ -97,6 +100,10 @@ class DeliveryStaffController extends Controller
 
         return DeliveryGuy::find($id);
     }
+
+
+
+
 
     public static function getDeliveryGuyId(Request $req)
     {
