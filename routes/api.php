@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,10 @@ Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updat
 Route::post('deliverystaff/login', [DeliveryStaffController::class, 'login']);
 
 
+// ========================email==================================
+// Route::get('send-email',[EmailController::class,'send']);
+// ========================email==================================
+
 
 // test postman
 Route::get('test', function () {
@@ -103,3 +108,7 @@ Route::post('company/login', [CompanyController::class, 'login']);
 
 
 // ++++++++++++++++++++++end company++++++++++++++++++++++++++++++++
+
+
+
+Route::get('send-email',[EmailController::class,'send'])->middleware(['auth:sanctum']);
