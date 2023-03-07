@@ -45,6 +45,11 @@ return [
             'provider' => 'companies, delivery_guys',
             'hash' => false,
         ]
+        // 'api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'companies',
+        //     'hash' => true,
+        // ],
     ],
 
     /*

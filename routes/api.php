@@ -105,6 +105,7 @@ Route::get('updateDeliveryStatus/{orderStatus}/{id}', [DeliveryStaffController::
 // ++++++++++++++++++++++company ++++++++++++++++++++++++++++++++
 Route::post('company/add', [CompanyController::class, 'store']);
 Route::post('company/login', [CompanyController::class, 'login']);
+Route::get('company/all', [CompanyController::class, 'getCompanies']);
 
 
 // ++++++++++++++++++++++end company++++++++++++++++++++++++++++++++
@@ -112,3 +113,20 @@ Route::post('company/login', [CompanyController::class, 'login']);
 
 
 Route::get('send-email',[EmailController::class,'send'])->middleware(['auth:sanctum']);
+
+
+
+// ===================== api_token ================
+
+
+// Route::middleware('auth:api')->get('gerges', function(Request $request) {
+//     return $request->user();
+// });
+// $response = $client->request('POST', '/hana', [
+
+//     'headers' => [
+//         'Authorization' => 'Bearer '.$token,
+//         'Accept' => 'application/json',
+//     ],
+// ]);
+// ===================== api_token ================

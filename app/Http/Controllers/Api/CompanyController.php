@@ -13,6 +13,13 @@ use Illuminate\Http\Response;
 class CompanyController extends Controller
 {
 
+    public function getCompanies()
+    {
+        return Company::all();
+        // return 'tttt';
+
+    }
+
     // function to add a new company
     public function store(Request $req)
     {
@@ -33,6 +40,8 @@ class CompanyController extends Controller
             'password' => bcrypt($company['password']),
             'street' => $company['street'],
             'email' => $company['email'],
+            'ApiCompany'=>bcrypt($company['userName']),
+            'api_token'=>bcrypt($company['userName'])
         ]);
 
         return response()->json([

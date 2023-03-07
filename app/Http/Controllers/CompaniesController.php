@@ -56,6 +56,8 @@ class CompaniesController extends Controller
             'password' => bcrypt($company['password']),
             'city' => $company['city'],
             'street' => $company['street'],
+            'ApiCompany' =>  bcrypt($company['user-name']),
+            'api_token' =>  bcrypt($company['user-name']),
         ]);
 
         $token = $comp->createToken('compTokenapp')->plainTextToken;
