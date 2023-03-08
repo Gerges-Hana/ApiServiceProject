@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 
-// http://127.0.0.1:8000/api/orders/{--id--}
+    // http://127.0.0.1:8000/api/orders/{--id--}
     Route::get('orders/{companyId}', [OrdersController::class, 'index']);
 
     // http://127.0.0.1:8000/api/orders/add
@@ -58,25 +58,25 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // routing to send wating order to delivery guy
     // http://127.0.0.1:8000/api/invoiceApi
-    Route::get('allorders/waiting',[OrdersController::class, 'postInvoiceToDelivery']);
+    Route::get('allorders/waiting', [OrdersController::class, 'postInvoiceToDelivery']);
 
 
 
-// ================= company ================
-Route::post('company/logout', [CompanyController::class, 'logout']);
-Route::put('company/update/{id}', [CompanyController::class, 'update']);
-Route::delete('/company/{id}',[CompanyController::class,'delete']);
+    // ================= company ================
+    Route::post('company/logout', [CompanyController::class, 'logout']);
+    Route::put('company/update/{id}', [CompanyController::class, 'update']);
+    Route::delete('/company/{id}', [CompanyController::class, 'delete']);
 
-// ================= delivery  ================
-Route::post('delivery/logout', [DeliveryStaffController::class, 'logout']);
-Route::put('delivery/update/{id}', [DeliveryStaffController::class, 'update']);
-Route::delete('/delivery/{id}',[DeliveryStaffController::class,'delete']);
+    // ================= delivery  ================
+    Route::post('delivery/logout', [DeliveryStaffController::class, 'logout']);
+    Route::put('delivery/update/{id}', [DeliveryStaffController::class, 'update']);
+    Route::delete('/delivery/{id}', [DeliveryStaffController::class, 'delete']);
 
 
-// ===============shady====================
-// function update status of delivery by the statuse of  invoices
-Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
-// ===============shady====================
+    // ===============shady====================
+    // function update status of delivery by the statuse of  invoices
+    Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
+    // ===============shady====================
 
 
 });
