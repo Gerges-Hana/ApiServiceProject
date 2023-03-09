@@ -47,6 +47,11 @@ class DeliveryStaffController extends Controller
         return response()->json(['message' => 'Delivery guy has been added successfully'], 200);
     }
 
+    /**
+     * for delivery to login
+     * @return if success => status 201, token
+     * @return if faild => status 401 , message
+     */
     public function login(Request $req)
     {
         $field = $req->all();
@@ -80,14 +85,13 @@ class DeliveryStaffController extends Controller
         return response()->json([
             'message' => 'Successfully logged out',
             'df' => $request->bearerToken(),
-         ], 201);
-
+        ], 201);
     }
 
 
-
-
-// function update delivery statuse to by free or busy
+    /**
+     * function update status of delivery to by free or busy by the status of invoices
+     */
     public static function updateDeliveryStatus(string $orderStatus, $id)
     {
         if ($orderStatus == 'onDelivering') {
@@ -115,7 +119,10 @@ class DeliveryStaffController extends Controller
         return $token->tokenable_id;
     }
 
-    public function update(Request $request,$id)
+    /**
+     * update delivery info by token not by id :)
+     */
+    public function update(Request $request, $id)
     {
 
         // $request->validate([
@@ -127,23 +134,21 @@ class DeliveryStaffController extends Controller
         // ]);
 
 
-        $deliveryGuy=DeliveryGuy::find($id);
+        $deliveryGuy = DeliveryGuy::find($id);
         $deliveryGuy->update($request->all());
         // return $deliveryGuy;
         return response()->json([
             'message' => 'deliveryGuy has been update successfully',
             'data' => $deliveryGuy
         ], 200);
-
-
     }
 
-
+    /**
+     * to delete delivery guy by his id
+     */
     public function delete($id)
     {
         // return 'delete function ';
         return DeliveryGuy::destroy($id);
     }
-
-
 }

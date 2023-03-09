@@ -27,7 +27,12 @@ class OrdersController extends Controller
     }
 
 
-    // =============================== getWaitingOrders===============
+    // ================= getWaitingOrders ==================
+    /**
+     * route for return all orders from resturant to his delivery by delivery token
+     * @return if success => status 200 , all waiting orders
+     * @return if delivery is busy => status 406 , 'message' => 'you are busy'
+     */
     public function getWaitingOrders(Request $req)
     {
         // return token code
@@ -71,7 +76,10 @@ class OrdersController extends Controller
     }
 
 
-    // function store  a invoices in api services from restaurant
+    /**
+     * function store  a invoices in api services from restaurant by its token
+     * @return if success => status 200 , 'message' => 'Invoice has been added successfully',
+     */
     public function storeInvoice(Request $request)
     {
         $invoice = $request->validate([
@@ -116,24 +124,23 @@ class OrdersController extends Controller
     }
 
 
-
-    public function updateStatus($invoiceId,$status, Request $req)
+    /**
+     * function update invoice status and delivery status
+     */
+    public function updateStatus($invoiceId, $status, Request $req)
     {
-        try{
+        try {
             // get delivery guy id
             $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
             // update invoice status
             // if incoming status is ondilvering && invoice status is waiting  => update
-            if($status=='waiting'){
-
-
+            if ($status == 'waiting') {
             }
             Invoice::where('id', $invoiceId)->update(['status' => $status, 'deliveryGuyId' => $deliveryId]);
             // update delivery guy status depending on invoice status
             DeliveryStaffController::updateDeliveryStatus($status, $deliveryId);
             return response()->json(['message' => 'status updated'], 201);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 501);
         }
     }
