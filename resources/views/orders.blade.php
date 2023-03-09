@@ -88,8 +88,8 @@ Orders
                             @foreach ($orders as $order)
                             <tr>
                                 <th scope="row">{{ $order->id }}</th>
-                                <td>{{ $order->companyId }}</td>
-                                <td>{{ $order->deliveryGuyId }}</td>
+                                <td>{{ $order->company->name }}</td>
+                                <td>{{ isset($order->delivery) ? $order->delivery->name : '....' }}</td>
                                 <td>{{ $order->isPaid }}</td>
                                 <td>{{ $order->delivaryFees }}</td>
                                 <td>{{ $order->status }}</td>
@@ -103,8 +103,6 @@ Orders
                                 <td>{{ $order->clientName }}</td>
                                 <td>{{ $order->clienPhone }}</td>
                                 <td>{{ $order->invoiceCode }}</td>
-
-
                             </tr>
                             @endforeach
 

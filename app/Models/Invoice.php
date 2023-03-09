@@ -25,4 +25,14 @@ class Invoice extends Model
         'clientPhone',
         'invoiceCode',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(related: Company::class, foreignKey: 'companyId');
+    }
+
+    public function delivery()
+    {
+        return $this->belongsTo(related: DeliveryGuy::class, foreignKey: 'deliveryGuyId');
+    }
 }

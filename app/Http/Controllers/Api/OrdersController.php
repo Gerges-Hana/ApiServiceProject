@@ -35,12 +35,8 @@ class OrdersController extends Controller
      */
     public function getWaitingOrders(Request $req)
     {
-        // return token code
-        $hashedToken = $req->bearerToken();
-        // return company of this token
-        $token = PersonalAccessToken::findToken($hashedToken);
-        // return company id of this token
-        $deliveryId = $token->tokenable_id;
+        // get delivery guy id
+        $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
         //  return $deliveryId;
         $companyId = DeliveryGuy::select('companyId')
             ->where('id', $deliveryId)
@@ -60,9 +56,13 @@ class OrdersController extends Controller
             'data' => $allOrders
         ], 200);
     }
-    // =============================== end function getWaitingOrders===============
+    // ================= end function getWaitingOrders ===============
 
-
+    public function getOrdersByStatusForDeliveryGuy(Request $req)
+    {
+        // get delivery guy id
+        $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
+    }
 
     public function allOrders()
     {

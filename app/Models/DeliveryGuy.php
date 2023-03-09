@@ -29,11 +29,13 @@ class DeliveryGuy extends Authenticatable
 
     public function company()
     {
+        // dd($this->belongsTo(related: Company::class, foreignKey: 'companyId'));
         return $this->belongsTo(related: Company::class, foreignKey: 'companyId');
     }
-    public function invoises()
+
+    public function invoices()
     {
-        dd($this->all());
-        return $this->hasMany(related: Invoice::class,foreignKey:"deliveryGuyId");
+        // dd($this->hasMany(related: Invoice::class, foreignKey: "deliveryGuyId"));
+        return $this->hasMany(related: Invoice::class, foreignKey: "deliveryGuyId");
     }
 }
