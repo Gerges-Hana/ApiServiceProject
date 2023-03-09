@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('orders/waiting', [OrdersController::class, 'getWaitingOrders']);
     // function update invoice status and delivery status
     Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
-    // api to get order or orders where order status{dynamic} = ( current delivering -> onDelivering الاوردر اللي هو بيوصله حاليا) | returned | deliverd | all 
+    // api to get order or orders where order status{dynamic} = ( current delivering -> onDelivering الاوردر اللي هو بيوصله حاليا) | returned | deliverd | all
     // if status is (all) return delivery orders old history of a specific delivery guy by his token
     Route::get('orders/{status}', [OrdersController::class, 'getOrdersByStatusForDeliveryGuy']);
 
@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 
-    // ORDERS ROUTES دي حاجات مش تبعك يا أشرف متجربهاش عشان متتعبنيش //
+    // ORDERS ROUTES والله انا ماتعبتك انتو الي تعبني معاكم || دي حاجات مش تبعك يا أشرف متجربهاش عشان متتعبنيش //
     // http://127.0.0.1:8000/api/orders/{--id--}
     Route::get('orders/{companyId}', [OrdersController::class, 'index']);
     // Route for return all orders of all companies
