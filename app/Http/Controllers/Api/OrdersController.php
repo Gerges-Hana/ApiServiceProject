@@ -37,11 +37,7 @@ class OrdersController extends Controller
     {
         // get delivery guy id
         $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
-        //  return $deliveryId;
-        $companyId = DeliveryGuy::select('companyId')
-            ->where('id', $deliveryId)
-            ->first()['companyId'];
-        //  return $companyId;
+        $companyId = DeliveryStaffController::getCompanyId($deliveryId);
         $allOrders = Invoice::where('companyId', $companyId)
             ->where('status', 'waiting')->get();
 
@@ -58,10 +54,48 @@ class OrdersController extends Controller
     }
     // ================= end function getWaitingOrders ===============
 
-    public function getOrdersByStatusForDeliveryGuy(Request $req)
+    /**
+     * @return case 'onDelivering': current delivering order one order
+     * @return case delivered | returned | all : old orders as given status many orders
+     */
+    public function getOrdersByStatusForDeliveryGuy(Request $req, string $status)
     {
         // get delivery guy id
         $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
+        $companyId = DeliveryStaffController::getCompanyId($deliveryId);
+
+        $allOrders = "";
+
+        switch ($status) {
+            case 'onDelivering':
+                $allOrders = Invoice::where('companyId', $companyId)
+                    ->where('status', $status)
+                    ->where('deliveryGuyId', $deliveryId)
+                    ->first();
+                break;
+
+            case 'delivered':
+            case 'returned':
+                $allOrders = Invoice::where('companyId', $companyId)
+                    ->where('status', $status)
+                    ->where('deliveryGuyId', $deliveryId)
+                    ->get();
+                break;
+
+            case 'all':
+                $allOrders = Invoice::where('companyId', $companyId)
+                    ->where('deliveryGuyId', $deliveryId)
+                    ->get();
+                break;
+
+            default:
+                return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 501);
+        }
+
+        return response()->json([
+            'message' => 'your orders',
+            'data' => $allOrders
+        ], 200);
     }
 
     public function allOrders()
@@ -146,7 +180,7 @@ class OrdersController extends Controller
     }
 
 
-    // function to send orders api to delivery gay
+    // function to send orders api to delivery guy
     public function postInvoiceToDelivery()
     {
 

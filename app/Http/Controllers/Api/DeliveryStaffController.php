@@ -105,8 +105,15 @@ class DeliveryStaffController extends Controller
         return DeliveryGuy::find($id);
     }
 
-
-
+    /**
+     * get company id by delivery id from delivery table
+     */
+    public static function getCompanyId($deliveryId)
+    {
+        return DeliveryGuy::select('companyId')
+        ->where('id', $deliveryId)
+        ->first()['companyId'];
+    }
 
 
     public static function getDeliveryGuyId(Request $req)
