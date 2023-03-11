@@ -34,7 +34,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/company/{id}', [CompanyController::class, 'delete']);
 
     // DELIVERY STAFF ROUTES //
-    Route::get('/deliverystaff/{companyId}', [DeliveryStaffController::class, 'index']);
+    // Kyrillos => has updated this api and deleted companyid please  ====> please update Documentation 
+    Route::get('/deliverystaff', [DeliveryStaffController::class, 'index']);
     Route::post('deliverystaff/add', [DeliveryStaffController::class, 'store']);
     // to delete delivery guy by his id
     Route::delete('/delivery/{id}', [DeliveryStaffController::class, 'delete']);
@@ -60,11 +61,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('delivery/logout', [DeliveryStaffController::class, 'logout']);
     // update delivery info by token -isa- buy now by id :)
     Route::put('delivery/update/{id}', [DeliveryStaffController::class, 'update']);
+    // get delivery guy information by his token ====> please update Documentation 
+    Route::get('delivery/info', [DeliveryStaffController::class, 'show']);
 
     // ORDERS ROUTES FOR COMPANY //
     // route for return all orders from resturant to his delivery by delivery token
     Route::get('orders/waiting', [OrdersController::class, 'getWaitingOrders']);
-    // function update invoice status and delivery status
+    // function update invoice status and delivery status.  ** API FOR COMPANY AND DELIVERY **
     Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
     // api to get order or orders where order status{dynamic} = ( current delivering -> onDelivering الاوردر اللي هو بيوصله حاليا) | returned | deliverd | all
     // if status is (all) return delivery orders old history of a specific delivery guy by his token

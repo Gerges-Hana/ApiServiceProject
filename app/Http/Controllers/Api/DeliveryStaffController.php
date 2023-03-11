@@ -14,8 +14,9 @@ use Laravel\Sanctum\PersonalAccessToken;
  */
 class DeliveryStaffController extends Controller
 {
-    public function index($companyId)
+    public function index(Request $req)
     {
+        $companyId = CompanyController::getCompanyId($req);
         return DeliveryGuy::where('companyId', $companyId)->get();
     }
 
@@ -33,7 +34,7 @@ class DeliveryStaffController extends Controller
         $guy = $req->all();
 
         DeliveryGuy::create([
-            'companyId' => $guy['company-id'],
+            'companyId' => CompanyController::getCompanyId($req),
             'name' => $guy['name'],
             'userName' => $guy['user-name'],
             'nationalId' => $guy['national-id'],
@@ -157,5 +158,17 @@ class DeliveryStaffController extends Controller
     {
         // return 'delete function ';
         return DeliveryGuy::destroy($id);
+    }
+
+    /**
+     * get delivery guy information by his token
+     */
+    public function show(Request $req)
+    {
+        $data = DeliveryGuy::select()->where('id', DeliveryStaffController::getDeliveryGuyId($req))->first();
+        return response()->json([
+            'message' => 'delivery Guy Info',
+            'data' => $data
+        ], 200);
     }
 }

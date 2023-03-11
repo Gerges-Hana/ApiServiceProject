@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Response;
-
+use Laravel\Sanctum\PersonalAccessToken;
 
 class CompanyController extends Controller
 {
@@ -116,6 +116,16 @@ class CompanyController extends Controller
     {
         // return 'delete function ';
         return Company::destroy($id);
+    }
+
+    public static function getCompanyId(Request $req)
+    {
+        // return token code
+        $hashedToken = $req->bearerToken();
+        // return company of this token
+        $token = PersonalAccessToken::findToken($hashedToken);
+        // return company id of this token
+        return $token->tokenable_id;
     }
 
 }
