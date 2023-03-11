@@ -44,11 +44,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Route for return all orders of specific company by token
     Route::get('orders', [OrdersController::class, 'companyOrders']);
     // http://127.0.0.1:8000/api/orders/add
-    // function store  a invoices in api services from restaurant by its token
+    // to store invoices in api services from restaurant by its token
     Route::post('orders/add', [OrdersController::class, 'storeInvoice']);
     //////////////////////////////////////////////////////////////////////////
 
-    // =======================================================================
+    // ==================================================================== //
 
     //////////////////////////////////////////////////////////////////////////
     ///////////////////////////- DELIVERY API -///////////////////////////////

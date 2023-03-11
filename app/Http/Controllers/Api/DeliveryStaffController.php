@@ -90,14 +90,14 @@ class DeliveryStaffController extends Controller
 
 
     /**
-     * function update status of delivery to by free or busy by the status of invoices
+     * function update status of delivery to by free or busy according to the status of the invoice
      */
     public static function updateDeliveryStatus(string $orderStatus, $id)
     {
         if ($orderStatus == 'onDelivering') {
             DeliveryGuy::where('id', $id)
                 ->update(['status' => 'busy']);
-        } elseif ($orderStatus == 'delivered' || $orderStatus == 'cancelled') {
+        } elseif ($orderStatus == 'delivered' || $orderStatus == 'cancelled' || $orderStatus == 'returned') {
             DeliveryGuy::where('id', $id)
                 ->update(['status' => 'free']);
         }
