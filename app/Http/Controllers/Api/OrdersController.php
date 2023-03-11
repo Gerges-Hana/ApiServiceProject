@@ -60,8 +60,6 @@ class OrdersController extends Controller
             'data' => $allOrders
         ], 200);
     }
-    // =============================== end function getWaitingOrders===============
-
 
 
     public function allOrders()

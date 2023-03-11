@@ -24,48 +24,48 @@ Companies
           <table class="table datatable dataTable-table table-hover table-striped">
             <thead>
               <tr>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">#</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >#</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Name</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Name</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">User Name</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >User Name</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Email</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Email</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Package Details</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Orders Details</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Start Date</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Start Date</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Delivery Staff</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Delivery Staff</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Adress</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Adress</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Orders</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Orders</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Waiting</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Waiting</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Done</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >Done</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">On Delivering</a>
+                <th scope="col" data-sortable="" class="">
+                  <a href="#" >On Delivering</a>
                 </th>
-               
+
               </tr>
             </thead>
             <tbody>
               @foreach ($companies as $comp)
-              <tr>
+              <tr class="">
                 <th scope="row">{{ $comp['id'] }}</th>
                 <td>{{ $comp['name'] }}</td>
                 <td>{{ $comp['userName'] }}</td>
@@ -86,10 +86,10 @@ Companies
         </div><!-- End companies info table -->
 
         <!-- Reports -->
-        <div class="col-12">
-          <div class="card">
-
-            <div class="filter">
+        <div class="col-12 py-5">
+          <div class="card ">
+{{-- /// --}}
+<div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <li class="dropdown-header text-start">
@@ -101,24 +101,25 @@ Companies
                 <li><a class="dropdown-item" href="#">This Year</a></li>
               </ul>
             </div>
+{{-- /// --}}
 
-            <div class="card-body">
+            <div class="card-body ">
               <h5 class="card-title">Companies <span>/Today</span></h5>
 
               <!-- Line Chart -->
-              <div id="reportsChart"></div>
+              <div id="reportsChart" class=" overflow-hidden" ></div>
 
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   new ApexCharts(document.querySelector("#reportsChart"), {
                     series: [{
-                      name: 'Package1',
+                      name: 'orders waiting',
                       data: [31, 40, 28, 51, 42, 82, 56],
                     }, {
-                      name: 'Package1',
+                      name: 'orders deliverd',
                       data: [11, 32, 45, 32, 34, 52, 41]
                     }, {
-                      name: 'Package1',
+                      name: 'orders canceld',
                       data: [15, 11, 32, 18, 9, 24, 11]
                     }],
                     chart: {

@@ -1,5 +1,5 @@
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar " style="background-color:">
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -20,7 +20,17 @@
             <i class="bi bi-circle"></i><span>All</span>
           </a>
         </li>
+
         <li>
+          <a href="/companies">
+
+            <a  href="{{ route('addCompany') }}">
+                <i class="bi bi-circle"></i> <span>Add Company</span>
+              </a>
+          </a>
+        </li>
+
+        {{-- <li>
           <a href="/companies">
             <i class="bi bi-circle"></i><span>Package1</span>
           </a>
@@ -34,7 +44,7 @@
           <a href="/companies">
             <i class="bi bi-circle"></i><span>Package3</span>
           </a>
-        </li>
+        </li> --}}
       </ul>
     </li><!-- End Companies Nav -->
 
@@ -87,20 +97,20 @@
 
     <!--============================-->
 
-    <li class="nav-heading">Pages</li>
+    {{-- <li class="nav-heading">Pages</li>
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="users-profile.html">
         <i class="bi bi-person"></i>
         <span>Profile</span>
       </a>
-    </li>
-
+    </li> --}}
+{{--
     <li class="nav-item btn btn-primary btn-block">
       <a class="nav-link collapsed" href="{{ route('addCompany') }}">
         <span>Add Company</span>
       </a>
-    </li><!-- End Profile Page Nav -->
+    </li><!-- End Profile Page Nav --> --}}
 
   </ul>
 

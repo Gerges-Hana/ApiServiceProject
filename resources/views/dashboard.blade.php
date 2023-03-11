@@ -182,7 +182,7 @@
               <h5 class="card-title">Companies <span>/Today</span></h5>
 
               <!-- Line Chart -->
-              <div id="reportsChart"></div>
+              <div id="reportsChart" class=" overflow-hidden"></div>
 
 
               <!-- End Line Chart -->
@@ -258,13 +258,13 @@
   document.addEventListener("DOMContentLoaded", () => {
     new ApexCharts(document.querySelector("#reportsChart"), {
       series: [{
-        name: 'Package1',
+        name: 'orders waiting',
         data: [31, 40, 28, 51, 42, 82, 56],
       }, {
-        name: 'Package1',
+        name: 'orders delivered',
         data: [11, 32, 45, 32, 34, 52, 41]
       }, {
-        name: 'Package1',
+        name: 'orders cancelsd',
         data: [15, 11, 32, 18, 9, 24, 11]
       }],
       chart: {
