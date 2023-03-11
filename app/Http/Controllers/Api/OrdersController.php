@@ -169,12 +169,17 @@ class OrdersController extends Controller
             $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
             // update invoice status
             // if incoming status is ondilvering && invoice status is waiting  => update
-            if ($status == 'waiting') {
+            // get order status
+            $orderStatus = Invoice::select('status')->where('id', $invoiceId)->first();
+
+            if ($orderStatus != 'waiting') {
+                
+            } else {
+                Invoice::where('id', $invoiceId)->update(['status' => $status, 'deliveryGuyId' => $deliveryId]);
+                // update delivery guy status depending on invoice status
+                DeliveryStaffController::updateDeliveryStatus($status, $deliveryId);
+                return response()->json(['message' => 'status updated'], 201);
             }
-            Invoice::where('id', $invoiceId)->update(['status' => $status, 'deliveryGuyId' => $deliveryId]);
-            // update delivery guy status depending on invoice status
-            DeliveryStaffController::updateDeliveryStatus($status, $deliveryId);
-            return response()->json(['message' => 'status updated'], 201);
         } catch (Exception $e) {
             return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 501);
         }

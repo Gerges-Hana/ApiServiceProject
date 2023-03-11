@@ -23,8 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-
+Route::group(['middleware' => ['iscompany']], function () {
     //////////////////////////////////////////////////////////////////////////
     ///////////////////////////- COMPANY API -////////////////////////////////
     //////////////////////////////////////////////////////////////////////////
@@ -48,6 +47,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // to store invoices in api services from restaurant by its token
     Route::post('orders/add', [OrdersController::class, 'storeInvoice']);
     //////////////////////////////////////////////////////////////////////////
+});
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    
 
     // ==================================================================== //
 
