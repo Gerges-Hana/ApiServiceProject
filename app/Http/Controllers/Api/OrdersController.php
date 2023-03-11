@@ -23,7 +23,10 @@ class OrdersController extends Controller
         $token = PersonalAccessToken::findToken($hashedToken);
         // return company id of this token
         $companyId = $token->tokenable_id;
-        return Invoice::where('companyId', $companyId)->get();
+        return DB::table('invoices')
+            ->where('invoices.companyId', $companyId)
+            ->leftJoin('delivery_guys', 'invoices.deliveryGuyId', '=', 'delivery_guys.id')
+            ->get();
     }
 
 
@@ -117,7 +120,6 @@ class OrdersController extends Controller
     public function storeInvoice(Request $request)
     {
         $invoice = $request->validate([
-            'companyId' => 'required',
             'isPaid' => 'required',
             'delivaryFees' => 'required',
             'city' => 'required',
@@ -135,7 +137,7 @@ class OrdersController extends Controller
         // $invoiceCode = $invoice['invoiceCode'] . md5($campanyId);
 
         $order = Invoice::create([
-            'companyId' => $invoice['companyId'],
+            'companyId' => CompanyController::getCompanyId($request),
             'isPaid' => $invoice['isPaid'],
             'delivaryFees' => $invoice['delivaryFees'],
             'city' => $invoice['city'],
@@ -148,7 +150,6 @@ class OrdersController extends Controller
             'clientName' => $invoice['clientName'],
             'clientPhone' => $invoice['clientPhone'],
             'invoiceCode' => $invoice['invoiceCode'],
-            // 'deliveryGuyId' => $invoice['deliveryGuyId'],
         ]);
 
         return response()->json([
