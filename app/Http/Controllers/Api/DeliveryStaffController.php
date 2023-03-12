@@ -106,7 +106,6 @@ class DeliveryStaffController extends Controller
         return DeliveryGuy::find($id);
     }
 
-<<<<<<< HEAD
     /**
      * get company id by delivery id from delivery table
      */
@@ -116,11 +115,9 @@ class DeliveryStaffController extends Controller
         ->where('id', $deliveryId)
         ->first()['companyId'];
     }
-=======
 
  
 
->>>>>>> gerges
 
 
     public static function getDeliveryGuyId(Request $req)
