@@ -11,7 +11,7 @@ class Invoice extends Model
 
     protected $fillable = [
         'companyId',
-        // 'deliveryGuyId',
+        'deliveryGuyId',
         'isPaid',
         'delivaryFees',
         'city',
@@ -25,4 +25,10 @@ class Invoice extends Model
         'clientPhone',
         'invoiceCode',
     ];
+    
+    public function invoice()
+    {
+        return $this->belongsTo(related: DeliveryGuy::class, foreignKey: 'deliveryGuyId');
+    }
+
 }
