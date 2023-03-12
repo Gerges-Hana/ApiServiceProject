@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -20,16 +21,16 @@ use App\Http\Controllers\OrdersController;
 
 // Auth::routes();
 
-Route::get('/', function () {
-    return view('dashboard');
-});
 
 
+
+Route::get('/', [DashboardController::class, 'index'])->name('companies.dashboard');
 Route::get('/companies', [CompaniesController::class, 'index'])->name('companies');
 
 Route::get('/addCompany', [CompaniesController::class, 'create'])->name('addCompany');
 
 Route::post('/storeCompany', [CompaniesController::class, 'store'])->name('company.store');
+Route::delete('/company/{id}',[CompaniesController::class ,'delete'])->name('company.delete');
 
 Route::get('/orders', [OrdersController::class, 'getAllOrders'] )->name('orders');
 

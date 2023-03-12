@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\DeliveryGuy;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -19,14 +20,29 @@ class CompaniesController extends Controller
 
     public function register(Request $req)
     {
-
     }
+
 
     public function index()
     {
-        $companies = $this->getCompanies();
+        $count=1;
 
-        return view('companies', ['companies' => $companies]);
+        $companies = $this->getCompanies();
+       foreach ($companies as $companie) {
+            $companie->count=count($companie->deliveries);
+        }
+
+       foreach ($companies as $orders) {
+            $orders->order=count($orders->invoices);
+            $orders->waiting=count($orders->invoices->where('status','waiting'));
+            $orders->onDelivering=count($orders->invoices->where('status','onDelivering'));
+            $orders->delivered=count($orders->invoices->where('status','delivered'));
+
+
+        }
+
+
+        return view('companies', ['companies' => $companies, 'count' => $count]);
     }
 
     public function create()
@@ -62,7 +78,14 @@ class CompaniesController extends Controller
 
         // dd($token);
 
-        return redirect()->route('companies');
+        return redirect()->route('companies.dashboard');
     }
 
+    public function delete($companyId)
+    {
+        Company::find($companyId)
+            ->delete();
+
+        return  redirect('/');
+    }
 }

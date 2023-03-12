@@ -20,4 +20,14 @@ class Company extends Authenticatable
         'city',
         'street',
     ];
+    // public $count = 0;
+    public function deliveries()
+    {
+        return $this->hasMany(related: DeliveryGuy::class, foreignKey: 'companyId');
+    }
+    public function invoices()
+    {
+        return $this->hasMany(related: Invoice::class, foreignKey: 'companyId');
+    }
+
 }

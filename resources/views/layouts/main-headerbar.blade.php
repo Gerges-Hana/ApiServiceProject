@@ -3,8 +3,8 @@
 
 <div class="d-flex align-items-center justify-content-between">
   <a href="/" class="logo d-flex align-items-center">
-    <img src="assets/img/logo.png" alt="">
-    <span class="d-none d-lg-block">Our Service</span>
+    <img class="" src="assets/img/pngwing.com.png" alt="">
+    <span class="d-none d-lg-block">API Service</span>
   </a>
   <i class="bi bi-list toggle-sidebar-btn"></i>
 </div><!-- End Logo -->
@@ -100,7 +100,7 @@
 
     </li><!-- End Notification Nav -->
 
-    <li class="nav-item dropdown">
+    {{-- <li class="nav-item dropdown">
 
       <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
         <i class="bi bi-chat-left-text"></i>
@@ -164,13 +164,13 @@
 
       </ul><!-- End Messages Dropdown Items -->
 
-    </li><!-- End Messages Nav -->
+    </li><!-- End Messages Nav --> --}}
 
     <li class="nav-item dropdown pe-3">
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+        <img src="assets/img/admin.png" alt="Profile" class="rounded-circle">
+        <span class="d-none d-md-block dropdown-toggle ps-2">API.Admin</span>
       </a><!-- End Profile Iamge Icon -->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

@@ -38,4 +38,10 @@ class DeliveryGuy extends Authenticatable
         // dd($this->hasMany(related: Invoice::class, foreignKey: "deliveryGuyId"));
         return $this->hasMany(related: Invoice::class, foreignKey: "deliveryGuyId");
     }
+    // public function invoises()
+    // {
+    //     dd($this->all());
+    //     return $this->hasMany(related: Invoice::class,foreignKey:"deliveryGuyId");
+    // }
+
 }

@@ -34,7 +34,7 @@ return new class extends Migration
 
 
             $table->boolean("isPaid");
-            $table->decimal("delivaryFees", 4, 3)->nullable();
+            $table->decimal("delivaryFees", 9, 2)->nullable();
             $table->enum(
                 "status",
                 ['onDelivering', 'delivered', 'cancelled', 'waiting', 'returned']
@@ -45,7 +45,7 @@ return new class extends Migration
             $table->char("buildingNumber", 100)->nullable();
             $table->char("floorNumber", 100)->nullable();
             $table->char("apartmentNumber", 100)->nullable();
-            $table->decimal("totalPrice", 9, 5);
+            $table->decimal("totalPrice", 9, 2);
             $table->timestamp('orderDate')->useCurrent();
             $table->string("clientName", 100);
             $table->string("clientPhone");

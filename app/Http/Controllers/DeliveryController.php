@@ -33,6 +33,11 @@ class DeliveryController extends Controller
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
     }
 
+    public function getDelivery($id)
+    {
+        DeliveryGuy::all()->where('companyId',$id);
+
+    }
 
 
 

@@ -55,6 +55,7 @@ class OrdersController extends Controller
             'data' => $allOrders
         ], 200);
     }
+<<<<<<< HEAD
     // ================= end function getWaitingOrders ===============
 
     /**
@@ -66,6 +67,8 @@ class OrdersController extends Controller
         // get delivery guy id
         $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
         $companyId = DeliveryStaffController::getCompanyId($deliveryId);
+=======
+>>>>>>> gerges
 
         $allOrders = "";
 
