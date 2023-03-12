@@ -23,8 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-
+Route::group(['middleware' => ['iscompany']], function () {
     //////////////////////////////////////////////////////////////////////////
     ///////////////////////////- COMPANY API -////////////////////////////////
     //////////////////////////////////////////////////////////////////////////
@@ -47,10 +46,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // http://127.0.0.1:8000/api/orders/add
     // to store invoices in api services from restaurant by its token
     Route::post('orders/add', [OrdersController::class, 'storeInvoice']);
+    // update invoice status and delivery status
+    Route::get('comp/order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatusByComp']);
+
     //////////////////////////////////////////////////////////////////////////
+});
 
-    // ==================================================================== //
-
+Route::group(['middleware' => ['isdelivery']], function () {
     //////////////////////////////////////////////////////////////////////////
     ///////////////////////////- DELIVERY API -///////////////////////////////
     //////////////////////////////////////////////////////////////////////////
@@ -66,17 +68,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // ORDERS ROUTES FOR COMPANY //
     // route for return all orders from resturant to his delivery by delivery token
+    
     Route::get('orders/waiting', [OrdersController::class, 'getWaitingOrders']);
-    // function update invoice status and delivery status.  ** API FOR COMPANY AND DELIVERY **
+    // function update invoice status and delivery status.
     Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
     // api to get order or orders where order status{dynamic} = ( current delivering -> onDelivering الاوردر اللي هو بيوصله حاليا) | returned | deliverd | all
     // if status is (all) return delivery orders old history of a specific delivery guy by his token
     Route::get('orders/{status}', [OrdersController::class, 'getOrdersByStatusForDeliveryGuy']);
 
-
     //////////////////////////////////////////////////////////////////////////
+});
 
-
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // ORDERS ROUTES والله انا ماتعبتك انتو الي تعبني معاكم || دي حاجات مش تبعك يا أشرف متجربهاش عشان متتعبنيش //
     // http://127.0.0.1:8000/api/orders/{--id--}
@@ -86,8 +89,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // routing to send wating order to delivery guy
     // http://127.0.0.1:8000/api/invoiceApi
     Route::get('allorders/waiting', [OrdersController::class, 'postInvoiceToDelivery']);
-
-
 });
 
 

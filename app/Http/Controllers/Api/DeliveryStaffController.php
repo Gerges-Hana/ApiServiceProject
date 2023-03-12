@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryGuy;
 use App\Models\Invoice;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
-
+use App\Events\AddDelivery;
 /**
  * Delivery staff api controller
  */
@@ -44,8 +45,11 @@ class DeliveryStaffController extends Controller
             'motorCycleNumber' => $guy['motor-num'],
             'email' => $guy['email'],
         ]);
+       $event=new AddDelivery("mmmmmmmmmmm");
+       event($event );
 
-        return response()->json(['message' => 'Delivery guy has been added successfully'], 200);
+        return response()->json(['message' => 'Delivery guy has been added successfully'
+    ,"event"=>$event->massege], 200);
     }
 
     /**
