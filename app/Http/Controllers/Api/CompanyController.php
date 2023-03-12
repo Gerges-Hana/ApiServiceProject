@@ -63,7 +63,7 @@ class CompanyController extends Controller
 
 
         // generate token if company is exist
-        $token = $company->createToken('deliveryGuyToken')->plainTextToken;
+        $token = $company->createToken('compTokenapp')->plainTextToken;
         // return $token;
         return response([
             'company Data' => $company,

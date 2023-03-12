@@ -17,15 +17,21 @@ class CompanyRoutes
      */
     public function handle(Request $request, Closure $next)
     {
-        $hashedToken = $request->bearerToken();
-        $token = PersonalAccessToken::findToken($hashedToken);
+        try {
+            $hashedToken = $request->bearerToken();
+            $token = PersonalAccessToken::findToken($hashedToken);
 
-        if ($token->name == 'compTokenapp') {
-            return $next($request);
+            if ($token->name == 'compTokenapp') {
+                return $next($request);
+            }
+
+            return response()->json([
+                'message' => 'access denied',
+            ], 401);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'access denied',
+            ], 401);
         }
-
-        return response()->json([
-            'message' => 'access denied',
-        ], 501);
     }
 }
