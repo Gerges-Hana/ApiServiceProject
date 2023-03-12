@@ -68,6 +68,7 @@ Route::group(['middleware' => ['isdelivery']], function () {
 
     // ORDERS ROUTES FOR COMPANY //
     // route for return all orders from resturant to his delivery by delivery token
+    
     Route::get('orders/waiting', [OrdersController::class, 'getWaitingOrders']);
     // function update invoice status and delivery status.
     Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
