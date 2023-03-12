@@ -91,7 +91,7 @@ class DeliveryStaffController extends Controller
 
 
     /**
-     * function update status of delivery to by free or busy according to the status of the invoice
+     * update delivery guy status to free or busy according to the status of the invoice
      */
     public static function updateDeliveryStatus(string $orderStatus, $id)
     {
