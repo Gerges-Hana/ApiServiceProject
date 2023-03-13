@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
 use App\Events\AddDelivery;
+use Pusher\Pusher;
+
 /**
  * Delivery staff api controller
  */
@@ -45,11 +47,25 @@ class DeliveryStaffController extends Controller
             'motorCycleNumber' => $guy['motor-num'],
             'email' => $guy['email'],
         ]);
-       $event=new AddDelivery("mmmmmmmmmmm");
-       event($event );
+       
+        $options = array(
+			'cluster' => env('PUSHER_APP_CLUSTER'),
+			'encrypted' => true
+		);
+        // dd(env('PUSHER_APP_KEY'));
+        $pusher = new Pusher(
+			env('PUSHER_APP_KEY'),
+			env('PUSHER_APP_SECRET'),
+			env('PUSHER_APP_ID'),
+			$options
+		);
 
-        return response()->json(['message' => 'Delivery guy has been added successfully'
-    ,"event"=>$event->massege], 200);
+        $data['message'] = 'Delivery guy has been added successfully';
+        $pusher->trigger('my-channel', 'App\\Events\\MyEvent', $data);
+
+
+
+        return response()->json(['message' => 'Delivery guy has been added successfully'], 200);
     }
 
     /**

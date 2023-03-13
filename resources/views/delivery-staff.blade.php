@@ -261,4 +261,20 @@ Delivery
 
 @section('script')
 
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+  <script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('7e18c210cb41a6df0ec4', {
+      cluster: 'eu',
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('App\\Events\\MyEvent', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
+
 @endsection
