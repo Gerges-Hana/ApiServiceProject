@@ -26,9 +26,24 @@ class OrdersController extends Controller
         $companyId = $token->tokenable_id;
         return DB::table('invoices as in')
             ->select(
-                'in.id as invoiceId', 'in.invoiceCode', 'in.companyId', 'in.isPaid', 'in.delivaryFees', 'in.status',
-                'in.city', 'in.street', 'in.buildingNumber', 'in.floorNumber', 'in.apartmentNumber', 'in.totalPrice',
-                'in.orderDate', 'in.clientName', 'in.clientPhone', 'in.created_at', 'dg.id as deliveryGuyId', 'dg.name'
+                'in.id as invoiceId',
+                'in.invoiceCode',
+                'in.companyId',
+                'in.isPaid',
+                'in.delivaryFees',
+                'in.status',
+                'in.city',
+                'in.street',
+                'in.buildingNumber',
+                'in.floorNumber',
+                'in.apartmentNumber',
+                'in.totalPrice',
+                'in.orderDate',
+                'in.clientName',
+                'in.clientPhone',
+                'in.created_at',
+                'dg.id as deliveryGuyId',
+                'dg.name'
             )->where('in.companyId', $companyId)
             ->leftJoin('delivery_guys as dg', 'in.deliveryGuyId', '=', 'dg.id')
             ->get();
@@ -164,8 +179,10 @@ class OrdersController extends Controller
     private function updateInvoiceStatus($deliveryId, $invoiceId, string $invoicStatus)
     {
         Invoice::where('id', $invoiceId)->update(['status' => $invoicStatus, 'deliveryGuyId' => $deliveryId]);
+        if ($deliveryId > 0) {
+            DeliveryStaffController::updateDeliveryStatus($invoicStatus, $deliveryId);
+        }
         // update delivery guy status depending on invoice status
-        DeliveryStaffController::updateDeliveryStatus($invoicStatus, $deliveryId);
         return response()->json(['message' => 'status updated'], 201);
     }
 
@@ -196,12 +213,15 @@ class OrdersController extends Controller
 
     public function updateStatusByComp($invoiceId, $status, Request $req)
     {
-        $orderStatus = Invoice::select('status')->where('id', $invoiceId)->first()['status'];
+        $invoice = Invoice::select()->where('id', $invoiceId)->first();
+        $orderStatus = $invoice['status'];
+
         if ($status == 'cancelled' && $orderStatus != 'delivered') {
             try {
-                $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
+                // $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
+                $deliveryId = $invoice['deliveryGuyId '];
                 return $this->updateInvoiceStatus($deliveryId, $invoiceId, $status);
-            } catch (\Throwable$th) {
+            } catch (\Throwable $th) {
                 return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 403);
             }
         } else {
