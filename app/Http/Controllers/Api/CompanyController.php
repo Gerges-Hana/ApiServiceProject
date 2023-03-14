@@ -13,6 +13,13 @@ use Laravel\Sanctum\PersonalAccessToken;
 class CompanyController extends Controller
 {
 
+    public function getCompanies()
+    {
+        return Company::all();
+        // return 'tttt';
+
+    }
+
     // function to add a new company
     public function store(Request $req)
     {
@@ -35,6 +42,10 @@ class CompanyController extends Controller
             'email' => $company['email'],
         ]);
 
+        $comp = Company::where('userName', $company['userName'])->first();
+
+        $token = $comp->createToken('compTokenapp')->plainTextToken;
+        $comp->update('api_token',$token);
         return response()->json([
             'message' => 'Company has been added successfully',
             'data' => $company

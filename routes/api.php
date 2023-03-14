@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::post('deliverystaff/login', [DeliveryStaffController::class, 'login']);
 
 
+<<<<<<< HEAD
+=======
+// ========================email==================================
+// Route::get('send-email',[EmailController::class,'send']);
+// ========================email==================================
+
+
+>>>>>>> updateInDB
 // test postman
 Route::get('test', function () {
     return "test";
@@ -108,6 +117,32 @@ Route::get('updateDeliveryStatus/{orderStatus}/{id}', [DeliveryStaffController::
 // ++++++++++++++++++++++company ++++++++++++++++++++++++++++++++
 Route::post('company/add', [CompanyController::class, 'store']);
 Route::post('company/login', [CompanyController::class, 'login']);
+Route::get('company/all', [CompanyController::class, 'getCompanies']);
 
 
+<<<<<<< HEAD
 // ++++++++++++++++++++++ end company ++++++++++++++++++++++++++++++++
+=======
+// ++++++++++++++++++++++end company++++++++++++++++++++++++++++++++
+
+
+
+Route::get('send-email',[EmailController::class,'send'])->middleware(['auth:sanctum']);
+
+
+
+// ===================== api_token ================
+
+
+// Route::middleware('auth:api')->get('gerges', function(Request $request) {
+//     return $request->user();
+// });
+// $response = $client->request('POST', '/hana', [
+
+//     'headers' => [
+//         'Authorization' => 'Bearer '.$token,
+//         'Accept' => 'application/json',
+//     ],
+// ]);
+// ===================== api_token ================
+>>>>>>> updateInDB

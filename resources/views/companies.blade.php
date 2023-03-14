@@ -59,12 +59,13 @@
                                     </th>
 
                                 </tr>
+
                             </thead>
                             <tbody>
                                 @foreach ($companies as $comp)
                                     <tr class="">
                                         <th scope="row">{{ $count++ }}</th>
-                                        <td>{{ $comp['name'] }}</td>
+                                        {{-- <td>{{ $comp['name'] }}</td>
                                         <td>{{ $comp['userName'] }}</td>
                                         <td>{{ $comp['email'] }}</td>
                                         <td>{{ $comp['created_at'] }}</td>
@@ -75,7 +76,22 @@
                                         <td class="text-center">{{$comp['waiting']}}</td>
                                         <td class="text-center">{{$comp['delivered']}}</td>
                                         <td class="text-center">{{$comp['onDelivering']}}</td>
-                                        <td class="text-center">
+                                        <td class="text-center"> --}}
+
+
+                                            <td>{{ $comp['name'] }}</td>
+                                            <td>{{ $comp['userName'] }}</td>
+                                            <td>{{ $comp['email'] }}</td>
+                                            <td>details</td>
+                                            <td>{{ $comp['created_at'] }}</td>
+                                            <td>20</td>
+                                            <td>{{ $comp['city'] }} {{ $comp['street'] }}</td>
+                                            <td>213</td>
+                                            <td>3</td>
+                                            <td>200</td>
+                                            <td>10</td>
+                                            <td style="overflow-x: scroll" >{{ isset($comp['api_token'])?$comp['api_token']:"apiKey" }} </td>
+
 
                                             <form class="d-inline" action="{{url("company/$comp->id")}}" method="POST">
                                                 @csrf
