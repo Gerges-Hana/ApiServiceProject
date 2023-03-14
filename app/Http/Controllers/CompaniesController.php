@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\DeliveryGuy;
 use Illuminate\Http\Request;
+
 use Illuminate\Http\Response;
+
 use Illuminate\Support\Facades\Hash;
 
 class CompaniesController extends Controller
-{
+{    
     /**
      * @return all companies
      */
@@ -82,6 +84,22 @@ class CompaniesController extends Controller
 
         return redirect()->route('companies.dashboard');
     }
+    public function search(Request $request){
+
+      
+        $search=$request['query']??"";
+        // dd($search,$request,$request->pathInfo(),$request->requestUri,$request['pathInfo']);
+        // Request::getRequestUri();
+        if($search!=""){
+            $company=Company::where('name','LIKE',"%$search%")->orwhere('id','LIKE',"%$search%")->get();
+
+        }
+        else{
+            $company=Company::all();
+        }
+        return view('companies', ['companies' => $company]);
+    }
+   
 
     public function delete($companyId)
     {

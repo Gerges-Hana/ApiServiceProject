@@ -7,6 +7,15 @@
 @section('css')
 @endsection
 
+@section('searchField')
+<div class="search-bar">
+  <form class="search-form d-flex align-items-center" method="get" action="{{ route('companies-search') }}">
+    <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
+    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+  </form>
+</div>
+@endsection
+
 @section('content')
     <section class="section dashboard">
         <div class="row">

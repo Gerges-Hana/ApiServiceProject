@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
 use App\Models\DeliveryGuy;
 use Illuminate\Http\Request;
 
@@ -18,28 +17,42 @@ class DeliveryController extends Controller
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys, 'count' => $count]);
     }
 
-
     public function deliveryGuysBusy()
     {
-        $deliveryGuys = DeliveryGuy::where('status','busy')->get();
+        $deliveryGuys = DeliveryGuy::where('status', 'busy')->get();
 
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
     }
 
-
     public function deliveryGuysFree()
     {
-        $deliveryGuys = DeliveryGuy::where('status','free')->get();
+        $deliveryGuys = DeliveryGuy::where('status', 'free')->get();
 
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
     }
 
     public function getDelivery($id)
     {
-        DeliveryGuy::all()->where('companyId',$id);
+        DeliveryGuy::all()->where('companyId', $id);
 
     }
 
+    public function deliverySearch(Request $request)
+    {
 
+        $search = $request['query'] ?? "";
 
+        if ($search != "") {
+            $deliveryGuys = DeliveryGuy::where('name', 'LIKE', "%$search%")->orwhere('id', 'LIKE', "%$search%")->get();
+
+        } else {
+            $deliveryGuys = DeliveryGuy::all();
+        }
+        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
+    }
+    public function deliverySearchByCompanyName(Request $request)
+    {
+        $delivery = new DeliveryGuy();
+        return view('delivery-staff', ['delvieryGuys' => SearchController::searchWithCompanyName($request, $delivery)]);
+    }
 }

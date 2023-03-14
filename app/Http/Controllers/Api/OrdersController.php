@@ -7,8 +7,9 @@ use App\Models\DeliveryGuy;
 use App\Models\Invoice;
 use Exception;
 use Illuminate\Http\Request;
-use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\Facades\DB;
+use Laravel\Sanctum\PersonalAccessToken;
+
 // use App\Http\Controllers\Api\DeliveryStaffController;
 
 class OrdersController extends Controller
@@ -26,13 +27,12 @@ class OrdersController extends Controller
         return DB::table('invoices as in')
             ->select(
                 'in.id as invoiceId', 'in.invoiceCode', 'in.companyId', 'in.isPaid', 'in.delivaryFees', 'in.status',
-                'in.city', 'in.street', 'in.buildingNumber', 'in.floorNumber', 'in.apartmentNumber', 'in.totalPrice', 
-                'in.orderDate', 'in.clientName', 'in.clientPhone', 'in.created_at','dg.id as deliveryGuyId', 'dg.name'
+                'in.city', 'in.street', 'in.buildingNumber', 'in.floorNumber', 'in.apartmentNumber', 'in.totalPrice',
+                'in.orderDate', 'in.clientName', 'in.clientPhone', 'in.created_at', 'dg.id as deliveryGuyId', 'dg.name'
             )->where('in.companyId', $companyId)
             ->leftJoin('delivery_guys as dg', 'in.deliveryGuyId', '=', 'dg.id')
             ->get();
     }
-
 
     // ================= getWaitingOrders ==================
     /**
@@ -56,7 +56,7 @@ class OrdersController extends Controller
         }
         return response()->json([
             'message' => 'your orders',
-            'data' => $allOrders
+            'data' => $allOrders,
         ], 200);
     }
     // ================= end function getWaitingOrders ===============
@@ -101,7 +101,7 @@ class OrdersController extends Controller
 
         return response()->json([
             'message' => 'your orders',
-            'data' => $allOrders
+            'data' => $allOrders,
         ], 200);
     }
 
@@ -115,7 +115,6 @@ class OrdersController extends Controller
     {
         return Invoice::where('companyId', $companyId)->get();
     }
-
 
     /**
      * function store  a invoices in api services from restaurant by its token
@@ -158,7 +157,7 @@ class OrdersController extends Controller
 
         return response()->json([
             'message' => 'Invoice has been added successfully',
-            'data' => $order
+            'data' => $order,
         ], 200);
     }
 
@@ -202,7 +201,7 @@ class OrdersController extends Controller
             try {
                 $deliveryId = DeliveryStaffController::getDeliveryGuyId($req);
                 return $this->updateInvoiceStatus($deliveryId, $invoiceId, $status);
-            } catch (\Throwable $th) {
+            } catch (\Throwable$th) {
                 return response()->json(['message' => "Failed, Status {$status} Not Accepted"], 403);
             }
         } else {
@@ -210,12 +209,10 @@ class OrdersController extends Controller
         }
     }
 
-
     // function to send orders api to delivery guy
     public function postInvoiceToDelivery()
     {
 
         return Invoice::where('status', 'waiting')->get();
     }
-
 }
