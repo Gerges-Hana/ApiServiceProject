@@ -158,9 +158,7 @@ class DeliveryStaffController extends Controller
         // ==================== v2 ===========================
 
         $deliveryGuy->update([
-
-            // 'password' => bcrypt($guy['password']),
-
+            'password' => bcrypt($guy['password']),
         ]);
 
         // ==================== v2 ===========================
