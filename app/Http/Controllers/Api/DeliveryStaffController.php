@@ -9,13 +9,10 @@ use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
-<<<<<<< HEAD
 use App\Http\Controllers\Api\CompanyController;
-=======
 use App\Events\AddDelivery;
 use App\Models\Company;
 use Pusher\Pusher;
->>>>>>> pusher
 
 /**
  * Delivery staff api controller
