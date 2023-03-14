@@ -200,7 +200,8 @@ class DeliveryStaffController extends Controller
     /**
      * to delete delivery guy by his id
      */
-    public function delete($id)
+    public function 
+    delete($id)
     {
         // return 'delete function ';
         DeliveryGuy::destroy($id);
