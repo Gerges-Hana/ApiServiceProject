@@ -106,7 +106,6 @@ class DeliveryStaffController extends Controller
         return DeliveryGuy::find($id);
     }
 
-<<<<<<< HEAD
     /**
      * get company id by delivery id from delivery table
      */
@@ -116,11 +115,9 @@ class DeliveryStaffController extends Controller
         ->where('id', $deliveryId)
         ->first()['companyId'];
     }
-=======
 
- 
 
->>>>>>> gerges
+
 
 
     public static function getDeliveryGuyId(Request $req)
@@ -148,9 +145,26 @@ class DeliveryStaffController extends Controller
         // ]);
 
 
+
+
+        $guy = $request->all();
+
         $deliveryGuy = DeliveryGuy::find($id);
         $deliveryGuy->update($request->all());
         // return $deliveryGuy;
+        // return $guy;
+
+
+        // ==================== v2 ===========================
+
+        $deliveryGuy->update([
+
+            // 'password' => bcrypt($guy['password']),
+
+        ]);
+
+        // ==================== v2 ===========================
+
         return response()->json([
             'message' => 'deliveryGuy has been update successfully',
             'data' => $deliveryGuy
