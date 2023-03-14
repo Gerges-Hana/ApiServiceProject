@@ -53,7 +53,12 @@ class DeliveryStaffController extends Controller
 			'cluster' => env('PUSHER_APP_CLUSTER'),
 			'encrypted' => true
 		);
+        
         // dd(env('PUSHER_APP_KEY'));
+        // string $auth_key, 
+        // string $secret, 
+        // string $app_id, 
+        //array $options = []
         $pusher = new Pusher(
 			"928555a600410d91f730",
 			"130a5b7e2b5b9171772e",
