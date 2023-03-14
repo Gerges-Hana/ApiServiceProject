@@ -15,34 +15,39 @@ class OrdersController extends Controller
         // $company = Company::select('name')->where('id'," $orders=>companyId")->get();
         // dd($company);
         // dd($orders);
-        return view('orders', ['orders' => $orders]);
+        $count = 0;
+        return view('orders', ['orders' => $orders, 'count' => $count]);
     }
     public function waitingOrders()
     {
         $order = Invoice::where('status', 'waiting')->get();
-        return view('orders', ['orders' => $order]);
+        $count = 0;
+        return view('orders', ['orders' => $order, 'count' => $count]);
     }
     public function deliveredOrders()
     {
         $order = Invoice::where('status', 'delivered')->get();
-        return view('orders', ['orders' => $order]);
+        $count = 0;
+        return view('orders', ['orders' => $order, 'count' => $count]);
     }
     public function canceledOrders()
     {
         $order = Invoice::where('status', 'cancelled')->get();
-        return view('orders', ['orders' => $order]);
+        $count = 0;
+        return view('orders', ['orders' => $order, 'count' => $count]);
     }
     public function onDeliveringOrders()
     {
         $order = Invoice::where('status', 'onDelivering')->get();
-        return view('orders', ['orders' => $order]);
+        $count = 0;
+        return view('orders', ['orders' => $order, 'count' => $count]);
     }
 
     public function returnedOrders()
-    {
-        {
+    { {
             $order = Invoice::where('status', 'returned')->get();
-            return view('orders', ['orders' => $order]);
+            $count = 0;
+            return view('orders', ['orders' => $order, 'count' => $count]);
         }
     }
     public function orderSearch(Request $request)

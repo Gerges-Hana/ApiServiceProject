@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\PersonalAccessToken;
+use Pusher\Pusher;
 
 // use App\Http\Controllers\Api\DeliveryStaffController;
 
@@ -169,6 +170,28 @@ class OrdersController extends Controller
             'clientPhone' => $invoice['clientPhone'],
             'invoiceCode' => $invoice['invoiceCode'],
         ]);
+
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'encrypted' => true
+        );
+
+        // dd(env('PUSHER_APP_KEY'));
+        // string $auth_key, 
+        // string $secret, 
+        // string $app_id, 
+        //array $options = []
+        $pusher = new Pusher(
+            "928555a600410d91f730",
+            "130a5b7e2b5b9171772e",
+            "1567366",
+            $options = [
+                'cluster' => 'eu'
+            ]
+        );
+
+        $data = $order;
+        $pusher->trigger('channel-order', 'App\\Events\\ayNela', $data);
 
         return response()->json([
             'message' => 'Invoice has been added successfully',

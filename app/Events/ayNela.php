@@ -31,6 +31,9 @@ class ayNela implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('channel-name');
+        return [
+            new Channel('channel-name'),
+            new Channel('channel-order')
+        ];
     }
 }

@@ -8,10 +8,10 @@ Orders
 @endsection
 @section('searchField')
 <div class="search-bar">
-  <form class="search-form d-flex align-items-center" method="get" action="{{ route('orderSearch') }}">
-    <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
-    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-  </form>
+    <form class="search-form d-flex align-items-center" method="get" action="{{ route('orderSearch') }}">
+        <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
 </div>
 @endsection
 @section('content')
@@ -83,15 +83,12 @@ Orders
                                 <th scope="col" data-sortable="">
                                     <a href="#" class="">clienPhone</a>
                                 </th>
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">clienPhone</a>
-                                </th>
 
                             </tr>
                         </thead>
 
 
-                        <tbody class="table-striped">
+                        <tbody class="table-striped" id="tb">
                             @foreach ($orders as $order)
                             <tr>
                                 <th scope="row">{{ $order->id }}</th>
@@ -287,4 +284,55 @@ Orders
 @endsection
 
 @section('script')
+
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('928555a600410d91f730', {
+        cluster: 'eu',
+        encrypted: true
+    });
+
+    var channel = pusher.subscribe('channel-order');
+    channel.bind('App\\Events\\ayNela', function(data) {
+        // alert(JSON.stringify(data));
+        // location.reload();
+        let flag = "{{ isset($orders[0]) ? $orders[0]['status'] : 'not' }}" === 'waiting';
+        if (flag) {
+            console.log(1);
+            loadTb(JSON.stringify(data));
+        }
+    });
+
+    // data is json string
+    function loadTb(data) {
+        let tb = document.getElementById("tb");
+        let info = JSON.parse(data);
+        console.log(data);
+        tb.innerHTML += `
+        <tr>
+            <th scope="row">{{ ++$count }}</th>
+            <td>${info.companyId}</td>
+            <td>...</td>
+            <td>${info.isPaid}</td>
+            <td>${info.delivaryFees}</td>
+            <td>waiting</td>
+            <td>${info.city}</td>
+            <td>${info.street}</td>
+            <td>${info.buildingNumber}</td>
+            <td>${info.floorNumber}</td>
+            <td>${info.apartmentNumber}</td>
+            <td>${info.totalPrice}</td>
+            <td>${info.orderDate}</td>
+            <td>${info.clientName}</td>
+            <td>${info.clienPhone}</td>
+            <td>${info.invoiceCode}</td>
+        </tr>
+        `;
+
+    }
+</script>
+
 @endsection
