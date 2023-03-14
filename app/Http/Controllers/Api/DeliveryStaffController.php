@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
 use App\Events\AddDelivery;
+use App\Models\Company;
 use Pusher\Pusher;
 
 /**
@@ -35,9 +36,9 @@ class DeliveryStaffController extends Controller
         ]);
 
         $guy = $req->all();
-
-        DeliveryGuy::create([
-            'companyId' => CompanyController::getCompanyId($req),
+        $companyId = CompanyController::getCompanyId($req);
+        $delivery = DeliveryGuy::create([
+            'companyId' => $companyId,
             'name' => $guy['name'],
             'userName' => $guy['user-name'],
             'nationalId' => $guy['national-id'],
@@ -54,14 +55,17 @@ class DeliveryStaffController extends Controller
 		);
         // dd(env('PUSHER_APP_KEY'));
         $pusher = new Pusher(
-			env('PUSHER_APP_KEY'),
-			env('PUSHER_APP_SECRET'),
-			env('PUSHER_APP_ID'),
-			$options
+			"928555a600410d91f730",
+			"130a5b7e2b5b9171772e",
+			"1567366",
+			$options = [
+                'cluster' => 'eu'
+            ]
 		);
-
-        $data['message'] = 'Delivery guy has been added successfully';
-        $pusher->trigger('my-channel', 'App\\Events\\MyEvent', $data);
+        
+        $delivery['company'] = Company::select('name')->where('id', $companyId)->first()['name'];
+        $data = $delivery;
+        $pusher->trigger('channel-name', 'App\\Events\\ayNela', $data);
 
 
 

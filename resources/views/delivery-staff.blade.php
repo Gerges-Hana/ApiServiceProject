@@ -46,9 +46,6 @@ Delivery
                   <a href="#" class="dataTable-sorter">status</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Adress</a>
-                </th>
-                <th scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Mail</a>
                 </th>
                 <th scope="col" data-sortable="">
@@ -71,17 +68,16 @@ Delivery
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tb">
               @foreach ($delvieryGuys as $guy)
               <tr>
-                <th scope="row">{{ $guy['id'] }}</th>
+                <th scope="row">{{ ++$count }}</th>
                 <td>{{ $guy->name }}</td>
                 <td>{{ $guy->userName }}</td>
                 <td>{{ $guy->phone }}</td>
                 <td>{{ $guy->company->name }}</td>
                 <td>{{ $guy->created_at }}</td>
                 <td>active</td>
-                <td>{{ $guy->city }} {{ $guy->street }}</td>
                 <td>{{ $guy->email }}</td>
                 <td>230</td>
                 <td>10</td>
@@ -262,19 +258,47 @@ Delivery
 @section('script')
 
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-  <script>
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+<script>
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
 
-    var pusher = new Pusher('7e18c210cb41a6df0ec4', {
-      cluster: 'eu',
-      encrypted: true
-    });
+  var pusher = new Pusher('928555a600410d91f730', {
+    cluster: 'eu',
+    encrypted: true
+  });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('App\\Events\\MyEvent', function(data) {
-      alert(JSON.stringify(data));
-    });
-  </script>
+  var channel = pusher.subscribe('channel-name');
+  channel.bind('App\\Events\\ayNela', function(data) {
+    // alert(JSON.stringify(data));
+    // location.reload();
+    loadTb(JSON.stringify(data));
+  });
+
+  // data is json string
+  function loadTb(data) {
+    let tb = document.getElementById("tb");
+    let info = JSON.parse(data);
+    console.log(data);
+    tb.innerHTML += `
+      <tr>
+        <th scope="row">{{ ++$count }}</th>
+        <td>${info.name}</td>
+        <td>${info.userName}</td>
+        <td>${info.phone}</td>
+        <td>${info.company}</td>
+        <td>${info.created_at}</td>
+        <td>active</td>
+        <td>${info.email}</td>
+        <td>230</td>
+        <td>10</td>
+        <td>450</td>
+        <td>${info.salary}</td>
+        <td>32</td>
+        <td>${info.nationalId}</td>
+      </tr>
+      `;
+
+  }
+</script>
 
 @endsection
