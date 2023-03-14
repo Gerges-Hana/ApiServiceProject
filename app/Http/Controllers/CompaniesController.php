@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class CompaniesController extends Controller
-{    
+{
     /**
      * @return all companies
      */
@@ -27,20 +28,18 @@ class CompaniesController extends Controller
 
     public function index()
     {
-        $count=1;
+        $count = 1;
 
         $companies = $this->getCompanies();
-       foreach ($companies as $companie) {
-            $companie->count=count($companie->deliveries);
+        foreach ($companies as $companie) {
+            $companie->count = count($companie->deliveries);
         }
 
-       foreach ($companies as $orders) {
-            $orders->order=count($orders->invoices);
-            $orders->waiting=count($orders->invoices->where('status','waiting'));
-            $orders->onDelivering=count($orders->invoices->where('status','onDelivering'));
-            $orders->delivered=count($orders->invoices->where('status','delivered'));
-
-
+        foreach ($companies as $orders) {
+            $orders->order = count($orders->invoices);
+            $orders->waiting = count($orders->invoices->where('status', 'waiting'));
+            $orders->onDelivering = count($orders->invoices->where('status', 'onDelivering'));
+            $orders->delivered = count($orders->invoices->where('status', 'delivered'));
         }
 
 
@@ -74,38 +73,36 @@ class CompaniesController extends Controller
             'password' => bcrypt($company['password']),
             'city' => $company['city'],
             'street' => $company['street'],
-            'ApiCompany' =>  bcrypt($company['user-name']),
-            'api_token' =>  bcrypt($company['user-name']),
         ]);
 
-        $token = $comp->createToken('compTokenapp')->plainTextToken;
+        $comp = Company::where('userName', $company['user-name'])->first();
 
-        // dd($token);
+        $token = $comp->createToken('compTokenapp')->plainTextToken;
+        $comp->update(['api_token' => $token]);
 
         return redirect()->route('companies.dashboard');
     }
-    public function search(Request $request){
 
-      
-        $search=$request['query']??"";
+    public function search(Request $request)
+    {
+
+        $count = 1;
+        $search = $request['query'] ?? "";
         // dd($search,$request,$request->pathInfo(),$request->requestUri,$request['pathInfo']);
         // Request::getRequestUri();
-        if($search!=""){
-            $company=Company::where('name','LIKE',"%$search%")->orwhere('id','LIKE',"%$search%")->get();
-
+        if ($search != "") {
+            $company = Company::where('name', 'LIKE', "%$search%")->orwhere('id', 'LIKE', "%$search%")->get();
+        } else {
+            $company = Company::all();
         }
-        else{
-            $company=Company::all();
-        }
-        return view('companies', ['companies' => $company]);
+        return view('companies', ['companies' => $company, 'count' => $count]);
     }
-   
+
 
     public function delete($companyId)
     {
-        Company::find($companyId)
-            ->delete();
-
+        Company::destroy($companyId);
+        PersonalAccessToken::where(['tokenable_id' => $companyId, 'name' => 'compTokenapp'])->delete();
         return  redirect('/');
     }
 }

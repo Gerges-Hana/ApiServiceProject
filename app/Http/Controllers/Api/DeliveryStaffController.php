@@ -12,6 +12,8 @@ use Laravel\Sanctum\PersonalAccessToken;
 use App\Http\Controllers\Api\CompanyController;
 use App\Events\AddDelivery;
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Pusher\Pusher;
 
 /**
@@ -49,26 +51,26 @@ class DeliveryStaffController extends Controller
             'motorCycleNumber' => $guy['motor-num'],
             'email' => $guy['email'],
         ]);
-       
+
         $options = array(
-			'cluster' => env('PUSHER_APP_CLUSTER'),
-			'encrypted' => true
-		);
-        
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'encrypted' => true
+        );
+
         // dd(env('PUSHER_APP_KEY'));
         // string $auth_key, 
         // string $secret, 
         // string $app_id, 
         //array $options = []
         $pusher = new Pusher(
-			"928555a600410d91f730",
-			"130a5b7e2b5b9171772e",
-			"1567366",
-			$options = [
+            "928555a600410d91f730",
+            "130a5b7e2b5b9171772e",
+            "1567366",
+            $options = [
                 'cluster' => 'eu'
             ]
-		);
-        
+        );
+
         $delivery['company'] = Company::select('name')->where('id', $companyId)->first()['name'];
         $data = $delivery;
         $pusher->trigger('channel-name', 'App\\Events\\ayNela', $data);
@@ -142,8 +144,8 @@ class DeliveryStaffController extends Controller
     public static function getCompanyId($deliveryId)
     {
         return DeliveryGuy::select('companyId')
-        ->where('id', $deliveryId)
-        ->first()['companyId'];
+            ->where('id', $deliveryId)
+            ->first()['companyId'];
     }
 
     public static function getDeliveryGuyId(Request $req)
@@ -201,7 +203,14 @@ class DeliveryStaffController extends Controller
     public function delete($id)
     {
         // return 'delete function ';
-        return DeliveryGuy::destroy($id);
+        DeliveryGuy::destroy($id);
+        // DeliveryGuy::find($id)->delete();
+        // -> delete all delivery tokens
+        PersonalAccessToken::where(['tokenable_id' => $id, 'name' => 'deliveryGuyToken'])->delete();
+
+        return response()->json([
+            'message' => 'delivery Guy deleted',
+        ], 200);
     }
 
     /**

@@ -126,7 +126,9 @@ class CompanyController extends Controller
     public function delete($id)
     {
         // return 'delete function ';
-        return Company::destroy($id);
+        Company::destroy($id);
+        PersonalAccessToken::where(['tokenable_id' => $id, 'name' => 'compTokenapp'])->delete();
+
     }
 
     public static function getCompanyId(Request $req)
