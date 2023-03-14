@@ -217,4 +217,5 @@ class OrdersController extends Controller
 
         return Invoice::where('status', 'waiting')->get();
     }
+
 }
