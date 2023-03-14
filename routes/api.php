@@ -69,7 +69,7 @@ Route::group(['middleware' => ['isdelivery']], function () {
 
     // ORDERS ROUTES FOR COMPANY //
     // route for return all orders from resturant to his delivery by delivery token
-    
+
     Route::get('orders/waiting', [OrdersController::class, 'getWaitingOrders']);
     // function update invoice status and delivery status.
     Route::get('order/update/{invoiceId}/{status}', [OrdersController::class, 'updateStatus']);
@@ -98,14 +98,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::post('deliverystaff/login', [DeliveryStaffController::class, 'login']);
 
 
-<<<<<<< HEAD
-=======
 // ========================email==================================
 // Route::get('send-email',[EmailController::class,'send']);
 // ========================email==================================
 
 
->>>>>>> updateInDB
 // test postman
 Route::get('test', function () {
     return "test";
@@ -120,14 +117,11 @@ Route::post('company/login', [CompanyController::class, 'login']);
 Route::get('company/all', [CompanyController::class, 'getCompanies']);
 
 
-<<<<<<< HEAD
-// ++++++++++++++++++++++ end company ++++++++++++++++++++++++++++++++
-=======
 // ++++++++++++++++++++++end company++++++++++++++++++++++++++++++++
 
 
 
-Route::get('send-email',[EmailController::class,'send'])->middleware(['auth:sanctum']);
+Route::get('send-email', [EmailController::class, 'send'])->middleware(['auth:sanctum']);
 
 
 
@@ -145,4 +139,3 @@ Route::get('send-email',[EmailController::class,'send'])->middleware(['auth:sanc
 //     ],
 // ]);
 // ===================== api_token ================
->>>>>>> updateInDB

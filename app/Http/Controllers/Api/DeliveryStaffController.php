@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryGuy;
 use App\Models\Invoice;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
+<<<<<<< HEAD
 use App\Http\Controllers\Api\CompanyController;
+=======
+use App\Events\AddDelivery;
+use App\Models\Company;
+use Pusher\Pusher;
+>>>>>>> pusher
 
 /**
  * Delivery staff api controller
@@ -33,9 +40,9 @@ class DeliveryStaffController extends Controller
         ]);
 
         $guy = $req->all();
-
-        DeliveryGuy::create([
-            'companyId' => CompanyController::getCompanyId($req),
+        $companyId = CompanyController::getCompanyId($req);
+        $delivery = DeliveryGuy::create([
+            'companyId' => $companyId,
             'name' => $guy['name'],
             'userName' => $guy['user-name'],
             'nationalId' => $guy['national-id'],
@@ -45,6 +52,31 @@ class DeliveryStaffController extends Controller
             'motorCycleNumber' => $guy['motor-num'],
             'email' => $guy['email'],
         ]);
+       
+        $options = array(
+			'cluster' => env('PUSHER_APP_CLUSTER'),
+			'encrypted' => true
+		);
+        
+        // dd(env('PUSHER_APP_KEY'));
+        // string $auth_key, 
+        // string $secret, 
+        // string $app_id, 
+        //array $options = []
+        $pusher = new Pusher(
+			"928555a600410d91f730",
+			"130a5b7e2b5b9171772e",
+			"1567366",
+			$options = [
+                'cluster' => 'eu'
+            ]
+		);
+        
+        $delivery['company'] = Company::select('name')->where('id', $companyId)->first()['name'];
+        $data = $delivery;
+        $pusher->trigger('channel-name', 'App\\Events\\ayNela', $data);
+
+
 
         return response()->json(['message' => 'Delivery guy has been added successfully'], 200);
     }

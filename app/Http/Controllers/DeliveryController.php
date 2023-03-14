@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\DeliveryGuy;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,8 @@ class DeliveryController extends Controller
     public function index()
     {
         $deliveryGuys = DeliveryGuy::all();
-
-        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
+        $count = 0;
+        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys, 'count' => $count]);
     }
 
 
