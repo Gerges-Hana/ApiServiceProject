@@ -25,49 +25,49 @@ Delivery
             <thead>
               <tr>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">#</a>
+                  <a href="#" class="">#</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Name</a>
+                  <a href="#" class="">Name</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">User Name</a>
+                  <a href="#" class="">User Name</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Phones</a>
+                  <a href="#" class="">Phones</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Company</a>
+                  <a href="#" class="">Company</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Start Date</a>
+                  <a href="#" class="">Start Date</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">status</a>
+                  <a href="#" class="">status</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Adress</a>
+                  <a href="#" class="">Adress</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Mail</a>
+                  <a href="#" class="">Mail</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Orders</a>
+                  <a href="#" class="">Orders</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Delivering time avrg</a>
+                  <a href="#" class="">Delivering time avrg</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Rating</a>
+                  <a href="#" class="">Rating</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Salary</a>
+                  <a href="#" class="">Salary</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Age</a>
+                  <a href="#" class="">Age</a>
                 </th>
                 <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">National Id</a>
+                  <a href="#" class="">National Id</a>
                 </th>
               </tr>
             </thead>

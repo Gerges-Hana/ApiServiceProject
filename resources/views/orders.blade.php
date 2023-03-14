@@ -22,62 +22,62 @@ Orders
                         <thead>
                             <tr>
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">#</a>
+                                    <a href="#" class="">#</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">Company</a>
+                                    <a href="#" class="">Company</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">delivery Guy</a>
+                                    <a href="#" class="">delivery Guy</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">is Paid</a>
+                                    <a href="#" class="">is Paid</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">delivary Fees</a>
+                                    <a href="#" class="">delivary Fees</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">status</a>
+                                    <a href="#" class="">status</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">city</a>
+                                    <a href="#" class="">city</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">street</a>
+                                    <a href="#" class="">street</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">buildingNumber</a>
+                                    <a href="#" class="">buildingNumber</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">floorNumber</a>
+                                    <a href="#" class="">floorNumber</a>
                                 </th>
 
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">apartmentNumber</a>
+                                    <a href="#" class="">apartmentNumber</a>
                                 </th>
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">totalPrice</a>
+                                    <a href="#" class="">totalPrice</a>
                                 </th>
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">orderDate</a>
+                                    <a href="#" class="">orderDate</a>
                                 </th>
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">clientName</a>
+                                    <a href="#" class="">clientName</a>
                                 </th>
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">clienPhone</a>
+                                    <a href="#" class="">clienPhone</a>
                                 </th>
                                 <th scope="col" data-sortable="">
-                                    <a href="#" class="dataTable-sorter">clienPhone</a>
+                                    <a href="#" class="">clienPhone</a>
                                 </th>
 
                             </tr>
@@ -88,7 +88,7 @@ Orders
                             @foreach ($orders as $order)
                             <tr>
                                 <th scope="row">{{ $order->id }}</th>
-                                <td>{{ $order->company->name }}</td>
+                                <td>{{ $order->company->name}}</td>
                                 <td>{{ isset($order->delivery) ? $order->delivery->name : '....' }}</td>
                                 <td>{{ $order->isPaid }}</td>
                                 <td>{{ $order->delivaryFees }}</td>

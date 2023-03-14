@@ -29,16 +29,21 @@ class Invoice extends Model
     public function company()
     {
         return $this->belongsTo(related: Company::class, foreignKey: 'companyId');
+        // return $this->hasMany(related: Company::class, foreignKey: 'companyId');
     }
+
+
+
+
 
     public function delivery()
     {
         return $this->belongsTo(related: DeliveryGuy::class, foreignKey: 'deliveryGuyId');
     }
 
-    public function invoice()
-    {
-        return $this->belongsTo(related: DeliveryGuy::class, foreignKey: 'deliveryGuyId');
-    }
+    // public function invoice()
+    // {
+    //     return $this->belongsTo(related: DeliveryGuy::class, foreignKey: 'deliveryGuyId');
+    // }
 
 }

@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
+use App\Http\Controllers\Api\CompanyController;
 
 /**
  * Delivery staff api controller
@@ -116,10 +117,6 @@ class DeliveryStaffController extends Controller
         ->first()['companyId'];
     }
 
- 
-
-
-
     public static function getDeliveryGuyId(Request $req)
     {
         // return token code
@@ -145,9 +142,24 @@ class DeliveryStaffController extends Controller
         // ]);
 
 
+
+
+        $guy = $request->all();
+
         $deliveryGuy = DeliveryGuy::find($id);
         $deliveryGuy->update($request->all());
         // return $deliveryGuy;
+        // return $guy;
+
+
+        // ==================== v2 ===========================
+
+        $deliveryGuy->update([
+            'password' => bcrypt($guy['password']),
+        ]);
+
+        // ==================== v2 ===========================
+
         return response()->json([
             'message' => 'deliveryGuy has been update successfully',
             'data' => $deliveryGuy
