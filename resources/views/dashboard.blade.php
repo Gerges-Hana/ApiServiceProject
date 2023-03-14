@@ -42,7 +42,7 @@
                   <i class="bi bi-cart"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>{{$allOrders}}</h6>
+                  <h6>{{ isset($allOrders)? $allOrders : '0' }}</h6>
                   <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                 </div>
@@ -77,7 +77,7 @@
                   <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>${{$revenue}}</h6>
+                  <h6>${{ isset($revenue)? $revenue : '0' }}</h6>
                   <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                 </div>
@@ -113,7 +113,7 @@
                   <i class="bi bi-people"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>{{$allCompany}}</h6>
+                  <h6>{{ isset($allCompany)? $allCompany : '0' }}</h6>
                   <span class="text-danger small pt-1 fw-bold">10%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                 </div>
@@ -150,7 +150,7 @@
                   <i class="bi bi-bicycle"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>{{$allDeliveries}}</h6>
+                  <h6>{{ isset($allDeliveries)? $allDeliveries : '0' }}</h6>
                   <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                 </div>
