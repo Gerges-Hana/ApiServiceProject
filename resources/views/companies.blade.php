@@ -63,7 +63,7 @@ Companies
                   <a href="#" class="dataTable-sorter">On Delivering</a>
                 </th>
 
-                <th scope="col" data-sortable="">
+                <th  scope="col" data-sortable="">
                   <a href="#" class="dataTable-sorter">Api Company</a>
                 </th>
 
@@ -84,7 +84,7 @@ Companies
                 <td>3</td>
                 <td>200</td>
                 <td>10</td>
-                <td>{{ isset($comp['ApiCompany'])?$comp['ApiCompany']:"apiKey" }} </td>
+                <td style="overflow-x: scroll" >{{ isset($comp['api_token'])?$comp['api_token']:"apiKey" }} </td>
 
               </tr>
               @endforeach

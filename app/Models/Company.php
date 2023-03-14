@@ -22,7 +22,6 @@ class Company extends Authenticatable
         'password',
         'city',
         'street',
-        'ApiCompany',
         'api_token',
     ];
 

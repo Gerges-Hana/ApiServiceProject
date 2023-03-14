@@ -40,10 +40,12 @@ class CompanyController extends Controller
             'password' => bcrypt($company['password']),
             'street' => $company['street'],
             'email' => $company['email'],
-            'ApiCompany'=>bcrypt($company['userName']),
-            'api_token'=>bcrypt($company['userName'])
         ]);
 
+        $comp = Company::where('userName', $company['userName'])->first();
+
+        $token = $comp->createToken('compTokenapp')->plainTextToken;
+        $comp->update('api_token',$token);
         return response()->json([
             'message' => 'Company has been added successfully',
             'data' => $company
@@ -72,7 +74,7 @@ class CompanyController extends Controller
 
 
         // generate token if company is exist
-        $token = $company->createToken('deliveryGuyToken')->plainTextToken;
+        $token = $company->createToken('compTokenapp')->plainTextToken;
         // return $token;
         return response([
             'company Data' => $company,
