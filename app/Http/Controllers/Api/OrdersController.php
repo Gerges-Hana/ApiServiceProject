@@ -227,6 +227,28 @@ class OrdersController extends Controller
             if (($orderStatus == 'waiting' && $status == 'onDelivering')
                 || ($orderStatus == 'onDelivering' && ($status == 'delivered' || $status == 'returned'))
             ) {
+                $options = array(
+                    'cluster' => env('PUSHER_APP_CLUSTER'),
+                    'encrypted' => true
+                );
+
+                // dd(env('PUSHER_APP_KEY'));
+                // string $auth_key, 
+                // string $secret, 
+                // string $app_id, 
+                //array $options = []
+                $pusher = new Pusher(
+                    "372ce9a6ac87e137328d",
+                    "9ec51c7ad325e3e9bd64",
+                    "1567891",
+                    $options = [
+                        'cluster' => 'eu'
+                    ]
+                );
+
+                $data = 'updated';
+                $pusher->trigger('channel-order-status-delivery', 'App\\Events\\ayNela', $data);
+
                 return $this->updateInvoiceStatus($deliveryId, $invoiceId, $status);
             } else {
                 return response()->json(['message' => "order is not available"], 403);
