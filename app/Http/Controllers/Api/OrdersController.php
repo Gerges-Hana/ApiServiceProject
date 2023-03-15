@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\DeliveryGuy;
 use App\Models\Invoice;
 use Exception;
@@ -154,9 +155,9 @@ class OrdersController extends Controller
         ]);
 
         // $invoiceCode = $invoice['invoiceCode'] . md5($campanyId);
-
+        $companyId = CompanyController::getCompanyId($request);
         $order = Invoice::create([
-            'companyId' => CompanyController::getCompanyId($request),
+            'companyId' => $companyId,
             'isPaid' => $invoice['isPaid'],
             'delivaryFees' => $invoice['delivaryFees'],
             'city' => $invoice['city'],
@@ -182,14 +183,15 @@ class OrdersController extends Controller
         // string $app_id, 
         //array $options = []
         $pusher = new Pusher(
-            "928555a600410d91f730",
-            "130a5b7e2b5b9171772e",
-            "1567366",
+            "372ce9a6ac87e137328d",
+            "9ec51c7ad325e3e9bd64",
+            "1567891",
             $options = [
                 'cluster' => 'eu'
             ]
         );
 
+        $order['company'] = Company::select('name')->where('id', $companyId)->first()['name'];
         $data = $order;
         $pusher->trigger('channel-order', 'App\\Events\\ayNela', $data);
 
@@ -225,6 +227,28 @@ class OrdersController extends Controller
             if (($orderStatus == 'waiting' && $status == 'onDelivering')
                 || ($orderStatus == 'onDelivering' && ($status == 'delivered' || $status == 'returned'))
             ) {
+                $options = array(
+                    'cluster' => env('PUSHER_APP_CLUSTER'),
+                    'encrypted' => true
+                );
+
+                // dd(env('PUSHER_APP_KEY'));
+                // string $auth_key, 
+                // string $secret, 
+                // string $app_id, 
+                //array $options = []
+                $pusher = new Pusher(
+                    "372ce9a6ac87e137328d",
+                    "9ec51c7ad325e3e9bd64",
+                    "1567891",
+                    $options = [
+                        'cluster' => 'eu'
+                    ]
+                );
+
+                $data = 'updated';
+                $pusher->trigger('channel-order-status-delivery', 'App\\Events\\ayNela', $data);
+
                 return $this->updateInvoiceStatus($deliveryId, $invoiceId, $status);
             } else {
                 return response()->json(['message' => "order is not available"], 403);
