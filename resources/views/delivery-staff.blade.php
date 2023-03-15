@@ -281,6 +281,11 @@ Delivery
     loadTb(JSON.stringify(data));
   });
 
+  var channel_delete_delivery = pusher.subscribe('channel-delete-delivery');
+  channel_delete_delivery.bind('App\\Events\\ayNela', function(data) {
+    location.reload();
+  });
+
   // data is json string
   function loadTb(data) {
     let tb = document.getElementById("tb");

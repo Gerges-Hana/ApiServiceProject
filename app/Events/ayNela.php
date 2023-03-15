@@ -34,6 +34,7 @@ class ayNela implements ShouldBroadcast
         return [
             new Channel('channel-name'),
             new Channel('channel-order-status-delivery'),
+            new Channel('channel-delete-delivery'),
             new Channel('channel-order')
         ];
     }

@@ -306,6 +306,11 @@ Orders
         }
     });
 
+    var channel_order_status_delivery = pusher.subscribe('channel-order-status-delivery');
+    channel_order_status_delivery.bind('App\\Events\\ayNela', function(data) {
+        location.reload();
+    });
+
     // data is json string
     function loadTb(data) {
         let tb = document.getElementById("tb");

@@ -200,7 +200,7 @@ class DeliveryStaffController extends Controller
     /**
      * to delete delivery guy by his id
      */
-    public function 
+    public function
     delete($id)
     {
         // return 'delete function ';
@@ -208,6 +208,29 @@ class DeliveryStaffController extends Controller
         // DeliveryGuy::find($id)->delete();
         // -> delete all delivery tokens
         PersonalAccessToken::where(['tokenable_id' => $id, 'name' => 'deliveryGuyToken'])->delete();
+
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'encrypted' => true
+        );
+
+        // dd(env('PUSHER_APP_KEY'));
+        // string $auth_key, 
+        // string $secret, 
+        // string $app_id, 
+        //array $options = []
+        $pusher = new Pusher(
+            "372ce9a6ac87e137328d",
+            "9ec51c7ad325e3e9bd64",
+            "1567891",
+            $options = [
+                'cluster' => 'eu'
+            ]
+        );
+
+        $data = 'updated';
+        $pusher->trigger('channel-delete-delivery', 'App\\Events\\ayNela', $data);
+
 
         return response()->json([
             'message' => 'delivery Guy deleted',
