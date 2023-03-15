@@ -52,7 +52,8 @@ class OrdersController extends Controller
     }
     public function orderSearch(Request $request)
     {
+        $count=0;
         $inv = new Invoice();
-        return view('orders', ['orders' => SearchController::searchWithCompanyName($request, $inv)]);
+        return view('orders', ['orders' => SearchController::searchWithCompanyName($request, $inv),'count' =>$count]);
     }
 }

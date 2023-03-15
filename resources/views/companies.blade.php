@@ -8,12 +8,12 @@
 @endsection
 
 @section('searchField')
-<div class="search-bar">
-  <form class="search-form d-flex align-items-center" method="get" action="{{ route('companies-search') }}">
-    <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
-    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-  </form>
-</div>
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="get" action="{{ route('companies-search') }}">
+            <input type="text" name="query" placeholder="Search Company" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
 @endsection
 
 @section('content')
@@ -26,46 +26,50 @@
 
                     <!-- Companies info table -->
                     <div class="dataTable-container table-responsive text-nowrap">
-                        <table class="table datatable dataTable-table table-hover table-striped">
-                            <thead>
+                        <table class="table datatable dataTable-table table-hover table-striped ">
+                            <thead >
                                 <tr>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">#</a>
+                                    <th scope="col" data-sortable="" class="m-2 ">
+                                        <a class="m-2" href="#">#</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Name</a>
+                                    <th scope="col" data-sortable="" class="m-2 ">
+                                        <a class="m-2" href="#">Name</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">User Name</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">User Name</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Email</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Email</a>
                                     </th>
 
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Start Date</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Start Date</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Delivery Staff</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Delivery Staff</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Adress</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Adress</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Orders</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Orders</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Waiting</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Waiting</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Done</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Done</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">On Delivering</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">On Delivering</a>
                                     </th>
-                                    <th scope="col" data-sortable="" class="">
-                                        <a href="#">Delete Company</a>
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Delete Company</a>
                                     </th>
+                                    <th scope="col"  data-sortable="" class="m-2 text-center">
+                                        <a class="m-2" href="#">Company Token </a>
+                                    </th>
+
 
                                 </tr>
 
@@ -74,44 +78,32 @@
                                 @foreach ($companies as $comp)
                                     <tr class="">
                                         <th scope="row">{{ $count++ }}</th>
-                                        {{-- <td>{{ $comp['name'] }}</td>
+                                        <td>{{ $comp['name'] }}</td>
                                         <td>{{ $comp['userName'] }}</td>
                                         <td>{{ $comp['email'] }}</td>
                                         <td>{{ $comp['created_at'] }}</td>
-
-                                        <td class="text-center">{{$comp['count']}}</td>
+                                        <td class="text-center">{{ $comp['count'] }}</td>{{--num of delivery --}}
                                         <td>{{ $comp['city'] }} _ {{ $comp['street'] }}</td>
-                                        <td class="text-center">{{$comp['order']}}</td>
-                                        <td class="text-center">{{$comp['waiting']}}</td>
-                                        <td class="text-center">{{$comp['delivered']}}</td>
-                                        <td class="text-center">{{$comp['onDelivering']}}</td>
-                                        <td class="text-center"> --}}
-
-
-                                            <td>{{ $comp['name'] }}</td>
-                                            <td>{{ $comp['userName'] }}</td>
-                                            <td>{{ $comp['email'] }}</td>
-                                            <td>details</td>
-                                            <td>{{ $comp['created_at'] }}</td>
-                                            <td>20</td>
-                                            <td>{{ $comp['city'] }} {{ $comp['street'] }}</td>
-                                            <td>213</td>
-                                            <td>3</td>
-                                            <td>200</td>
-                                            <td>10</td>
-                                            <td style="overflow-x: scroll" >{{ isset($comp['api_token'])?$comp['api_token']:"apiKey" }} </td>
-
-
-                                            <form class="d-inline" action="{{url("company/$comp->id")}}" method="POST">
+                                        <td class="text-center">{{ $comp['order'] }}</td>{{--num of orders --}}
+                                        <td class="text-center">{{ $comp['waiting'] }}</td>
+                                        <td class="text-center">{{ $comp['delivered'] }}</td>
+                                        <td class="text-center">{{ $comp['onDelivering'] }}</td>
+                                        <td class="text-center">
+                                            <form class="d-inline" action="{{ url("company/$comp->id") }}" method="POST">
                                                 @csrf
 
                                                 @method('DELETE')
-                                                <input type="submit" class="btn btn-sm btn-danger" id="delete" value="Delete">
+                                                <input type="submit" class="btn btn-sm btn-danger" id="delete"
+                                                    value="Delete">
 
                                             </form>
 
                                             {{-- <button type="button" class="btn btn-danger ">Delete</button> --}}
 
+                                        </td>
+
+                                        <td   class="" >
+                                            {{ isset($comp['api_token']) ? $comp['api_token'] : 'apiKey' }}
                                         </td>
 
                                     </tr>

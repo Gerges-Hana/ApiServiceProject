@@ -31,6 +31,7 @@ class CompaniesController extends Controller
         $count = 1;
 
         $companies = $this->getCompanies();
+        // dd($companies);
         foreach ($companies as $companie) {
             $companie->count = count($companie->deliveries);
         }

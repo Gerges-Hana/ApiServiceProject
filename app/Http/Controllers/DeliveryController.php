@@ -13,22 +13,24 @@ class DeliveryController extends Controller
     public function index()
     {
         $deliveryGuys = DeliveryGuy::all();
+        // dd($deliveryGuys);
         $count = 0;
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys, 'count' => $count]);
     }
 
     public function deliveryGuysBusy()
     {
+        $count = 0;
         $deliveryGuys = DeliveryGuy::where('status', 'busy')->get();
 
-        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
+        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys , 'count' => $count]);
     }
 
     public function deliveryGuysFree()
     {
         $deliveryGuys = DeliveryGuy::where('status', 'free')->get();
-
-        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys]);
+        $count = 0;
+        return view('delivery-staff', ['delvieryGuys' => $deliveryGuys , 'count' => $count]);
     }
 
     public function getDelivery($id)
@@ -52,7 +54,8 @@ class DeliveryController extends Controller
     }
     public function deliverySearchByCompanyName(Request $request)
     {
+        $count=0;
         $delivery = new DeliveryGuy();
-        return view('delivery-staff', ['delvieryGuys' => SearchController::searchWithCompanyName($request, $delivery)]);
+        return view('delivery-staff', ['delvieryGuys' => SearchController::searchWithCompanyName($request, $delivery),'count'=>$count]);
     }
 }

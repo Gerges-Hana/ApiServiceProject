@@ -31,48 +31,40 @@ Delivery
           <table class="table datatable dataTable-table table-hover table-striped">
             <thead>
               <tr>
-                <th scope="col" data-sortable="">
+                <th scope="col" class="m-3">
                   <a href="#" class="">#</a>
                 </th>
-                <th scope="col" data-sortable="">
+                <th scope="col" class="m-3">
                   <a href="#" class="">Name</a>
                 </th>
-                <th scope="col" data-sortable="">
+                <th scope="col" class="m-3">
                   <a href="#" class="">User Name</a>
                 </th>
-                <th scope="col" data-sortable="">
+                <th scope="col" class="m-3">
                   <a href="#" class="">Phones</a>
                 </th>
-                <th scope="col" data-sortable="">
+                <th scope="col" class="m-3">
                   <a href="#" class="">Company</a>
                 </th>
-                <th scope="col" data-sortable="">
+                <th scope="col" class="m-3">
                   <a href="#" class="">Start Date</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="">status</a>
+                <th scope="col" class="m-3">
+                  <a href="#" class="">motorCycle Number</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="dataTable-sorter">Mail</a>
+                <th scope="col" class="m-3">
+                  <a href="#" class="">salary</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="">Orders</a>
+
+                <th scope="col" class="" class="m-3">
+                  <a href="#" class="">Mail</a>
                 </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="">Delivering time avrg</a>
-                </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="">Rating</a>
-                </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="">Salary</a>
-                </th>
-                <th scope="col" data-sortable="">
-                  <a href="#" class="">Age</a>
-                </th>
-                <th scope="col" data-sortable="">
+                <th scope="col" class="m-3">
                   <a href="#" class="">National Id</a>
                 </th>
+                <th scope="col" class="m-3">
+                    <a href="#" class="">status</a>
+                  </th>
               </tr>
             </thead>
             <tbody id="tb">
@@ -84,14 +76,21 @@ Delivery
                 <td>{{ $guy->phone }}</td>
                 <td>{{ $guy->company->name }}</td>
                 <td>{{ $guy->created_at }}</td>
-                <td>active</td>
-                <td>{{ $guy->email }}</td>
-                <td>230</td>
-                <td>10</td>
-                <td>450</td>
+                <td>{{ $guy->motorCycleNumber }}</td>
                 <td>{{ $guy->salary }}</td>
-                <td>32</td>
+                <td>{{ $guy->email }}</td>
                 <td>{{ $guy->nationalId }}</td>
+                <td>
+
+                @if($guy->status=='free')
+                    <div  class="bg-primary text-light text-center rounded px-2  "><p>free</p> </div>
+
+                @else
+                    <div  class="bg-danger text-light text-center rounded px-2 "><p>Busy</p></div>
+                @endif
+
+                </td>
+
               </tr>
               @endforeach
             </tbody>

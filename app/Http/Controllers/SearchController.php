@@ -9,15 +9,16 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     /**
-     * this method let you search with company name and return collection of $wanted model 
+     * this method let you search with company name and return collection of $wanted model
      * @param Request $request passing search request
      * @param Model $wanted the entity that I want to get in result for example DeliveryGuyModel or InvoiceModel
-     * @return Collection $results of $wanted model 
+     * @return Collection $results of $wanted model
      */
     public static function searchWithCompanyName(Request $request, Model $wanted)
     {
         $search = $request['query'] ?? "";
         $results = collect();
+
 
         if ($search != "") {
 

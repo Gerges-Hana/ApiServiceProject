@@ -28,61 +28,51 @@ Orders
 
                         <thead>
                             <tr>
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">#</a>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">#</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">Company</a>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">Company</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">delivery Guy</a>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">delivery Guy</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">is Paid</a>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">is Paid</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">delivary Fees</a>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">delivary Fees</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">status</a>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">status</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">city</a>
+                                <th class="  p-2" >
+                                    <a href="#" class="text-center m-2">Address</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">street</a>
+
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">totalPrice</a>
+                                </th>
+                                <th class="  p-2" >
+                                    <a href="#" class=" text-center m-2">orderDate</a>
+                                </th>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">clientName</a>
+                                </th>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">client Phone</a>
+                                </th>
+                                <th class="  p-2" >
+                                    <a href="#" class=" m-2">invoice Code</a>
                                 </th>
 
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">buildingNumber</a>
-                                </th>
-
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">floorNumber</a>
-                                </th>
-
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">apartmentNumber</a>
-                                </th>
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">totalPrice</a>
-                                </th>
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">orderDate</a>
-                                </th>
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">clientName</a>
-                                </th>
-                                <th scope="col" data-sortable="">
-                                    <a href="#" class="">clienPhone</a>
-                                </th>
 
                             </tr>
                         </thead>
@@ -91,22 +81,18 @@ Orders
                         <tbody class="table-striped" id="tb">
                             @foreach ($orders as $order)
                             <tr>
-                                <th scope="row">{{ $order->id }}</th>
+                                <th scope="row">{{ ++$count }}</th>
                                 <td>{{ $order->company->name}}</td>
-                                <td>{{ isset($order->delivery) ? $order->delivery->name : '....' }}</td>
+                                <td>{{ isset($order->delivery) ? $order->delivery->name : '.NO.' }}</td>
                                 <td>{{ $order->isPaid }}</td>
                                 <td>{{ $order->delivaryFees }}</td>
                                 <td>{{ $order->status }}</td>
-                                <td>{{ $order->city }}</td>
-                                <td>{{ $order->street }}</td>
-                                <td>{{ $order->buildingNumber }}</td>
-                                <td>{{ $order->floorNumber }}</td>
-                                <td>{{ $order->apartmentNumber }}</td>
+                                <td>{{ $order->city }} _ {{ $order->street }}</td>
                                 <td>{{ $order->totalPrice }}</td>
                                 <td>{{ $order->orderDate }}</td>
-                                <td>{{ $order->clientName }}</td>
-                                <td>{{ $order->clienPhone }}</td>
-                                <td>{{ $order->invoiceCode }}</td>
+                                <td class="text-center">{{ $order->clientName }}</td>
+                                <td>{{ $order->clientPhone }}</td>
+                                <td class="text-center">{{ $order->invoiceCode }}</td>
                             </tr>
                             @endforeach
 
@@ -327,7 +313,7 @@ Orders
             <td>${info.totalPrice}</td>
             <td>${info.orderDate}</td>
             <td>${info.clientName}</td>
-            <td>${info.clienPhone}</td>
+            <td>${info.clientPhone}</td>
             <td>${info.invoiceCode}</td>
         </tr>
         `;

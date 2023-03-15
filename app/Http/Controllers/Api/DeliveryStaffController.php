@@ -58,9 +58,9 @@ class DeliveryStaffController extends Controller
         );
 
         // dd(env('PUSHER_APP_KEY'));
-        // string $auth_key, 
-        // string $secret, 
-        // string $app_id, 
+        // string $auth_key,
+        // string $secret,
+        // string $app_id,
         //array $options = []
         $pusher = new Pusher(
             "928555a600410d91f730",
@@ -200,7 +200,7 @@ class DeliveryStaffController extends Controller
     /**
      * to delete delivery guy by his id
      */
-    public function 
+    public function
     delete($id)
     {
         // return 'delete function ';
