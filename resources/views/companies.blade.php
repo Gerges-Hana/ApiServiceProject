@@ -27,7 +27,7 @@
                     <!-- Companies info table -->
                     <div class="dataTable-container table-responsive text-nowrap">
                         <table class="table datatable dataTable-table table-hover table-striped ">
-                            <thead >
+                            <thead>
                                 <tr>
                                     <th scope="col" data-sortable="" class="m-2 ">
                                         <a class="m-2" href="#">#</a>
@@ -66,7 +66,7 @@
                                     <th scope="col" data-sortable="" class="m-2 text-center">
                                         <a class="m-2" href="#">Delete Company</a>
                                     </th>
-                                    <th scope="col"  data-sortable="" class="m-2 text-center">
+                                    <th scope="col" data-sortable="" class="m-2 text-center">
                                         <a class="m-2" href="#">Company Token </a>
                                     </th>
 
@@ -82,9 +82,9 @@
                                         <td>{{ $comp['userName'] }}</td>
                                         <td>{{ $comp['email'] }}</td>
                                         <td>{{ $comp['created_at'] }}</td>
-                                        <td class="text-center">{{ $comp['count'] }}</td>{{--num of delivery --}}
+                                        <td class="text-center">{{ $comp['count'] }}</td>{{-- num of delivery --}}
                                         <td>{{ $comp['city'] }} _ {{ $comp['street'] }}</td>
-                                        <td class="text-center">{{ $comp['order'] }}</td>{{--num of orders --}}
+                                        <td class="text-center">{{ $comp['order'] }}</td>{{-- num of orders --}}
                                         <td class="text-center">{{ $comp['waiting'] }}</td>
                                         <td class="text-center">{{ $comp['delivered'] }}</td>
                                         <td class="text-center">{{ $comp['onDelivering'] }}</td>
@@ -102,15 +102,25 @@
 
                                         </td>
 
-                                        <td   class="" >
+                                        <td class="">
                                             {{ isset($comp['api_token']) ? $comp['api_token'] : 'apiKey' }}
                                         </td>
 
                                     </tr>
                                 @endforeach
                             </tbody>
+
                         </table>
                     </div><!-- End companies info table -->
+
+
+                    {{-- pagination  start --}}
+                    <div class="  d-flex justify-content-center ">
+                        <div class=" w-25  my-3  ">
+                            {{ $companies->links() }}
+                        </div>
+                    </div>
+                    {{-- pagination  end --}}
 
                     <!-- Reports -->
                     <div class="col-12 py-5">
