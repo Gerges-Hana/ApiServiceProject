@@ -290,7 +290,7 @@ Orders
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('928555a600410d91f730', {
+    var pusher = new Pusher('372ce9a6ac87e137328d', {
         cluster: 'eu',
         encrypted: true
     });
@@ -314,7 +314,7 @@ Orders
         tb.innerHTML += `
         <tr>
             <th scope="row">{{ ++$count }}</th>
-            <td>${info.companyId}</td>
+            <td>${info.company}</td>
             <td>...</td>
             <td>${info.isPaid}</td>
             <td>${info.delivaryFees}</td>
