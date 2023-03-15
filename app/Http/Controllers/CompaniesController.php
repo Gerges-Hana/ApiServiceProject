@@ -18,7 +18,8 @@ class CompaniesController extends Controller
      */
     private function getCompanies()
     {
-        return Company::all();
+        // return Company::all();
+        return Company::paginate(5);
     }
 
     public function register(Request $req)

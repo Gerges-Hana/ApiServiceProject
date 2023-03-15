@@ -97,6 +97,14 @@ Delivery
           </table>
         </div><!-- End companies info table -->
 
+        {{-- pagination  start --}}
+        <div class="  d-flex justify-content-center ">
+            <div class=" w-25  mx-auto my-3  ">
+                {{ $delvieryGuys->links() }}
+            </div>
+        </div>
+        {{-- pagination  end --}}
+
         <!-- Reports -->
         <div class="col-12">
           <div class="card">

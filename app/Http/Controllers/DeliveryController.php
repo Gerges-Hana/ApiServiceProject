@@ -12,7 +12,7 @@ class DeliveryController extends Controller
 {
     public function index()
     {
-        $deliveryGuys = DeliveryGuy::all();
+        $deliveryGuys = DeliveryGuy::paginate(5);
         // dd($deliveryGuys);
         $count = 0;
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys, 'count' => $count]);
