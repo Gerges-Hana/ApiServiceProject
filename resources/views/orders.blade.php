@@ -37,19 +37,19 @@ Orders
                                 </th>
 
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">delivery Guy</a>
+                                    <a href="#" class=" m-2">Delivery Guy</a>
                                 </th>
 
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">is Paid</a>
+                                    <a href="#" class=" m-2">Is Paid</a>
                                 </th>
 
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">delivary Fees</a>
+                                    <a href="#" class=" m-2">Delivary Fees</a>
                                 </th>
 
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">status</a>
+                                    <a href="#" class=" m-2">Status</a>
                                 </th>
 
                                 <th class="  p-2" >
@@ -58,19 +58,19 @@ Orders
 
 
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">totalPrice</a>
+                                    <a href="#" class=" m-2">Total Price</a>
                                 </th>
                                 <th class="  p-2" >
-                                    <a href="#" class=" text-center m-2">orderDate</a>
+                                    <a href="#" class=" text-center m-2">Order Date</a>
                                 </th>
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">clientName</a>
+                                    <a href="#" class=" m-2">Client Name</a>
                                 </th>
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">client Phone</a>
+                                    <a href="#" class=" m-2">Client Phone</a>
                                 </th>
                                 <th class="  p-2" >
-                                    <a href="#" class=" m-2">invoice Code</a>
+                                    <a href="#" class=" m-2">Invoice Code</a>
                                 </th>
 
 

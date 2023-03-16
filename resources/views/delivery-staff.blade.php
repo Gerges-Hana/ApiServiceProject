@@ -50,10 +50,10 @@ Delivery
                   <a href="#" class="">Start Date</a>
                 </th>
                 <th scope="col" class="m-3">
-                  <a href="#" class="">motorCycle Number</a>
+                  <a href="#" class="">Motor-Cycle Number</a>
                 </th>
                 <th scope="col" class="m-3">
-                  <a href="#" class="">salary</a>
+                  <a href="#" class="">Salary</a>
                 </th>
 
                 <th scope="col" class="" class="m-3">
@@ -63,7 +63,7 @@ Delivery
                   <a href="#" class="">National Id</a>
                 </th>
                 <th scope="col" class="m-3">
-                    <a href="#" class="">status</a>
+                    <a href="#" class="">Status</a>
                   </th>
               </tr>
             </thead>
