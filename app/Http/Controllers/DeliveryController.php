@@ -21,14 +21,14 @@ class DeliveryController extends Controller
     public function deliveryGuysBusy()
     {
         $count = 0;
-        $deliveryGuys = DeliveryGuy::where('status', 'busy')->get();
+        $deliveryGuys = DeliveryGuy::where('status', 'busy')->paginate(10);
 
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys , 'count' => $count]);
     }
 
     public function deliveryGuysFree()
     {
-        $deliveryGuys = DeliveryGuy::where('status', 'free')->get();
+        $deliveryGuys = DeliveryGuy::where('status', 'free')->paginate(10);
         $count = 0;
         return view('delivery-staff', ['delvieryGuys' => $deliveryGuys , 'count' => $count]);
     }
